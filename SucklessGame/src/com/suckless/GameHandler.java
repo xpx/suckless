@@ -20,11 +20,9 @@ public class GameHandler {
 		player1 = x1;
 		player2 = x2;
 		
+		
 		// Initialiser statehandler-baben
 		handle = new StateHandler(xSquares,ySquares);
-		
-		// Initialiser selectorgrande stuffet
-		// selector = new SelectorGrande();
 		
 		// Send størrelsen videre ned til gameobject
 		this.Handle();
@@ -50,6 +48,39 @@ public class GameHandler {
 	// Handle functionen til at køre the stuff
 	public void  updateSelection()
 	{
-		// selector.selectGameObject();
+		updatePlayer(this.player1);
+		updatePlayer(this.player2);
+	}
+	
+	// Ret spillerne
+	private void updatePlayer(GameObject[] player){
+		int x1;
+		x1 = findPlayerIndex(player);
+			player[x1].selected = false;
+		if (x1 < player.length-1)
+		{
+			player[x1+1].selected = true;
+		}
+		else
+		{
+			player[0].selected = true;
+		}
+	}
+	
+	// Find objectet der er selected
+	private int findPlayerIndex(GameObject[] player)
+	{
+		int x1 = 0;
+		if(player != null)
+		{
+			for(int i=0; i<player.length; i++){
+				if (player[i].selected == true){
+					x1 = i;
+					break;
+				}
+			}
+		}
+		return x1;
 	}
 }
+
