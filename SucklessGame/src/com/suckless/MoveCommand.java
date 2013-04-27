@@ -1,63 +1,17 @@
 package com.suckless;
 
 public class MoveCommand extends Selecter{
-
-	
-	public int x,y,maxX,maxY;
-	public StateDirection direction;
-	
-	MoveCommand(GameObject inputObject,int x1, int y1, int maxX1, int maxY1) {
-		super(inputObject);
-		x = x1;
-		y = y1;
-		
-
+	MoveCommand(GameObject inputObject, int x1, int y1) {
+		super(inputObject, x1, y1);
+		// TODO Auto-generated constructor stub
 	}
-	
-	@Override
-	public Command Select(){
 		
-	}
-	
-	@Override
-	public Command Update(){
+	public void handleSelect(){
 		switch(direction){
-			case LEFT:	if(x == 0){
-							// nyt objekt skal vælges
-						}
-						else{
-							x = x-1;
-						}
-							
-				break;
-			case RIGHT:	if(x == maxX){
-							// nyt objekt skal vælges
-						}
-						else{
-							x = x+1;
-						}
-				break;
-			case UP:	if(y == 0){
-							// nyt objekt skal vælges
-						}
-						else{
-							y = y-1;
-						}
-				break;
-			case DOWN:	if(y == maxX){
-							// nyt objekt skal vælges
-						}
-						else{
-							y = y+1;
-						}
-				break;
-			default:
-				break;
+		case UP:	
+			break;
+		case DOWN:	
+			break;
 		}
-			
-			
-			
-		return new MoveCommand(selectedObject,x+1,y);
 	}
-
 }
