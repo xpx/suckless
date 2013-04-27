@@ -31,8 +31,17 @@ public class MoveAble extends GameObject {
 				this.pos = target;
 			} else {
 				// Calculate and update position new position
-				// TODO check is we are to add or sub dist 
-				this.pos.x = this.pos.x - TickControl.gameSpeed*this.speed;
+				// TODO check is we are to add or sub distance
+				if (pos.x < target.x){
+					this.pos.x = this.pos.x + TickControl.gameSpeed*this.speed;
+				} else {
+					this.pos.x = this.pos.x - TickControl.gameSpeed*this.speed;
+				}
+				if (pos.y < target.y){
+					this.pos.y = this.pos.y + TickControl.gameSpeed*this.speed;
+				} else {
+					this.pos.y = this.pos.y - TickControl.gameSpeed*this.speed;
+				}
 			}
 			
 		}
