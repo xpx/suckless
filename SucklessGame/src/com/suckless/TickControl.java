@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 public class TickControl {
 	
-	public static double gameSpeed = 100;
+	public static float gameSpeed = 100;
 	public static long tickSize = 100;
 	public static long updateSelector = 500;
 	
