@@ -2,16 +2,13 @@ package com.suckless;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.List;
 
 import com.badlogic.gdx.math.Vector2;
 
 
 public class GameHandler {
 	
-
-	// Stï¿½rrelsen pï¿½ arrayet
+	// Størrelsen på arrayet
 	public int xSquares = 10;
 	public int ySquares = 10;
 	public StateHandler handle;
@@ -19,45 +16,18 @@ public class GameHandler {
 	public GameObject[] player2;
 	public Player[] players;
 	public Dictionary<Player,Command> commandDict;
+	private ShufflerHeleDagen megaShuffler;
 	
 	// public SelectorGrande selector;
 	
-	private class playerEventHandler implements EventListener{
-
-		Player playerObject;
-		GameHandler gameHandler;
-		playerEventHandler(Player plyObj, GameHandler handler){
-			playerObject = plyObj;
-			gameHandler = handler;
-			
-		}
-		@Override
-		public void Invoke() {
-			gameHandler.onPlayerSelectEvent(playerObject);
-			
-		}
-	}
-	List<playerEventHandler> playerEventHandlers;
-	
 	GameHandler(Player[] players1){
-		playerEventHandlers = new LinkedList<playerEventHandler>();
 		players = players1;
-		for(Player ply : players){
-			playerEventHandler pListener = new playerEventHandler(ply,this);
-			playerEventHandlers.add(pListener);
-			EventBase evt = ply.getEvent();
-			evt.AddListener(pListener);
-		}
 		commandDict = new Hashtable<Player,Command>();
-		
+		megaShuffler = new ShufflerHeleDagen();
 	}
 	
-	void onPlayerSelectEvent(Player player){
-		Command cmd = commandDict.get(player);
-		commandDict.put(player,cmd.Select());
-	}
 	
-//	// Init gï¿½gl
+//	// Init gøgl
 //	GameHandler(GameObject[] x1, GameObject[] x2){
 //		// Init players
 //		player1 = x1;
@@ -67,11 +37,11 @@ public class GameHandler {
 //		// Initialiser statehandler-baben
 //		handle = new StateHandler(xSquares,ySquares);
 //		
-//		// Send stï¿½rrelsen videre ned til gameobject
+//		// Send størrelsen videre ned til gameobject
 //		this.Handle();
 //	}
 	
-	// Handle functionen til at kï¿½re the stuff
+	// Handle functionen til at køre the stuff
 	public void  Handle()
 	{
 		// update all gameobjects function
@@ -92,13 +62,20 @@ public class GameHandler {
 		}
 	}
 	
-	// Handle functionen til at kï¿½re the stuff
+	// Handle functionen til at køre the stuff
 	public void  updateSelection()
 	{
 		//new GameObject(new Vector2(1,1),1,1,1);
 		for(int i = 0; i<players.length;i++)
 		{
-			commandDict.put(players[i], commandDict.get(players[i]).Update());
+			Command obj = commandDict.get(players[i]).Update(handle.stateArray, players[i]);
+			// aktiver shuffling
+			if(obj == null){
+				megaShuffler.MegaHand(handle.stateArray);
+			}
+			else{
+				commandDict.put(players[i],obj);
+			}
 			players[i].CommandChanged(commandDict.get(players[i]));
 		}
 	}
