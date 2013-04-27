@@ -8,13 +8,21 @@ public class TickControl {
 	
 	public static float gameSpeed = 100;
 	public static long tickSize = 100;
+	public static long updateSelector = 500;
 	
 	public static void main(String[] args) {
 		final GameHandler gameHandling = new GameHandler();
+		
 		new Timer().schedule(new TimerTask() { 
 			public void run()  { 
 				gameHandling.Handle();
 			}
 		}, 0, tickSize);
+		
+		new Timer().schedule(new TimerTask() { 
+			public void run()  { 
+				gameHandling.updateSelection();
+			}
+		}, 0, updateSelector);
 	}
 }
