@@ -10,6 +10,20 @@ public class TickControl {
 	public static long tickSize = 100;
 	public static long updateSelector = 500;
 	
+	public static void startTickControl(final GameHandler gameHandling){
+		new Timer().schedule(new TimerTask() { 
+			public void run()  { 
+				gameHandling.Handle();
+			}
+		}, 0, tickSize);
+		
+		new Timer().schedule(new TimerTask() { 
+			public void run()  { 
+				gameHandling.updateSelection();
+			}
+		}, 0, updateSelector);
+	}
+	
 	public static void main(String[] args) {
 		final GameHandler gameHandling = new GameHandler(null, null);
 		

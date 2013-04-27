@@ -8,7 +8,6 @@ public class Infantry extends MoveAble {
 
 	public Infantry(Vector2 pos, double hp, float speed, double damage) {
 		super(pos, hp, speed);
-		// TODO Auto-generated constructor stub
 		
 		this.damage = damage;
 	}

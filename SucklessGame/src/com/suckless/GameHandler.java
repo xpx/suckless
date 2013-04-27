@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GameHandler {
 	
-	// Størrelsen på arrayet
+	// Stï¿½rrelsen pï¿½ arrayet
 	public static int xSquares = 10;
 	public static int ySquares = 10;
 	public StateHandler handle;
@@ -14,7 +14,7 @@ public class GameHandler {
 	// public SelectorGrande selector;
 	
 	
-	// Init gøgl
+	// Init gï¿½gl
 	GameHandler(GameObject[] x1, GameObject[] x2){
 		// Init players
 		player1 = x1;
@@ -24,11 +24,11 @@ public class GameHandler {
 		// Initialiser statehandler-baben
 		handle = new StateHandler(xSquares,ySquares);
 		
-		// Send størrelsen videre ned til gameobject
-		this.Handle();
+		// Send stï¿½rrelsen videre ned til gameobject
+		//this.Handle();
 	}
 	
-	// Handle functionen til at køre the stuff
+	// Handle functionen til at kï¿½re the stuff
 	public void  Handle()
 	{
 		// update all gameobjects function
@@ -45,7 +45,7 @@ public class GameHandler {
 		}	
 	}
 	
-	// Handle functionen til at køre the stuff
+	// Handle functionen til at kï¿½re the stuff
 	public void  updateSelection()
 	{
 		updatePlayer(this.player1);
