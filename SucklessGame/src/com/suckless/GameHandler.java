@@ -27,7 +27,7 @@ public class GameHandler {
 		{
 			for (int j=0; j < ySquares; j++)
 			{
-				// handle.stateArray[i][j].gameobject.update();
+				handle.stateArray[i][j].gameobject.Update();
 			}
 		}	
 		
