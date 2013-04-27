@@ -1,11 +1,14 @@
 package com.suckless;
 
+import com.badlogic.gdx.math.Vector2;
+
+
 public class Infantry extends MoveAble {
 	
 	public double damage;
 
-	public Infantry(double x_pos, double y_pos, double hp, double speed, double damage) {
-		super(x_pos, y_pos, hp, speed);
+	public Infantry(Vector2 pos, double hp, double speed, double damage) {
+		super(pos, hp, speed);
 		// TODO Auto-generated constructor stub
 		
 		this.damage = damage;

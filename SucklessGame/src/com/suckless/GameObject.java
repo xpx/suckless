@@ -1,27 +1,28 @@
 package com.suckless;
 
+import com.badlogic.gdx.math.Vector2;
+
+
 public class GameObject {
 	
 	// Position
-	public double x;
-	public double y;
+	public Vector2 pos;
 	
 	// HP
 	public double hp;
 	
-	public GameObject(double x_pos, double y_pos, double hp) {
-		this.x = x_pos;
-		this.y = y_pos;
+	public GameObject(Vector2 pos, double hp) {
+		this.pos = pos;
 		this.hp = hp;
 	}
 	
 	// Returns x pos rounded to nearest int
 	public int getXTile() {
-		return (int)Math.round(x);
+		return (int)Math.round(pos.x);
 	}
 	// Returns x pos rounded to nearest int
 	public int getYTile() {
-		return (int)Math.round(y);
+		return (int)Math.round(pos.y);
 	}
 	
 }

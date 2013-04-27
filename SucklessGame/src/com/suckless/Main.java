@@ -11,7 +11,6 @@ public class Main {
 		// Morten test
 		new LwjglApplication(new GameMain(), "Suckless dude", 300, 300, true);
 
-
 	}
 
 }
