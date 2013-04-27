@@ -23,7 +23,7 @@ public class MoveCommand extends Selecter{
 	public Command Update(){
 		switch(direction){
 			case LEFT:	if(x == 0){
-							// nyt objekt skal vælges
+							// nyt objekt skal vï¿½lges
 						}
 						else{
 							x = x-1;
@@ -31,21 +31,21 @@ public class MoveCommand extends Selecter{
 							
 				break;
 			case RIGHT:	if(x == maxX){
-							// nyt objekt skal vælges
+							// nyt objekt skal vï¿½lges
 						}
 						else{
 							x = x+1;
 						}
 				break;
 			case UP:	if(y == 0){
-							// nyt objekt skal vælges
+							// nyt objekt skal vï¿½lges
 						}
 						else{
 							y = y-1;
 						}
 				break;
 			case DOWN:	if(y == maxX){
-							// nyt objekt skal vælges
+							// nyt objekt skal vï¿½lges
 						}
 						else{
 							y = y+1;
