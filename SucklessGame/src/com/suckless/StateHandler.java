@@ -1,6 +1,10 @@
 package com.suckless;
 public class StateHandler {
-	public Field[][] stateArray;
+	public static Field[][] stateArray;
+	
+	StateHandler(int x, int y){
+		this.ConstructStateArray(x, y);
+	}
 	
 	public void ConstructStateArray(int x, int y)
 	{
