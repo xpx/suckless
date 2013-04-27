@@ -4,6 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 
 
 public abstract class GameObject {
+	// Define owner
+	public Player owner;
 	
 	// Is the object selected
 	boolean selected;

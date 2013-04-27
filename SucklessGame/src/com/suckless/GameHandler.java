@@ -16,12 +16,14 @@ public class GameHandler {
 	public GameObject[] player2;
 	public Player[] players;
 	public Dictionary<Player,Command> commandDict;
+	private ShufflerHeleDagen megaShuffler;
 	
 	// public SelectorGrande selector;
 	
 	GameHandler(Player[] players1){
 		players = players1;
 		commandDict = new Hashtable<Player,Command>();
+		megaShuffler = new ShufflerHeleDagen();
 	}
 	
 	
@@ -66,7 +68,14 @@ public class GameHandler {
 		//new GameObject(new Vector2(1,1),1,1,1);
 		for(int i = 0; i<players.length;i++)
 		{
-			commandDict.put(players[i], commandDict.get(players[i]).Update());
+			Command obj = commandDict.get(players[i]).Update(handle.stateArray, players[i]);
+			// aktiver shuffling
+			if(obj == null){
+				megaShuffler.MegaHand(handle.stateArray);
+			}
+			else{
+				commandDict.put(players[i],obj);
+			}
 			players[i].CommandChanged(commandDict.get(players[i]));
 		}
 	}

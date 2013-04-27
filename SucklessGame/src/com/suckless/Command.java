@@ -11,7 +11,9 @@ public class Command {
 		return new Command(selectedObject);
 	}
 	
-	public Command Update(){
+	public Command Update(Field[][] states, Player player){
 		return this;
 	}
+	
+	
 }
