@@ -11,7 +11,7 @@ public class TickControl {
 	public static long updateSelector = 500;
 	
 	public static void main(String[] args) {
-		final GameHandler gameHandling = new GameHandler();
+		final GameHandler gameHandling = new GameHandler(null, null);
 		
 		new Timer().schedule(new TimerTask() { 
 			public void run()  { 

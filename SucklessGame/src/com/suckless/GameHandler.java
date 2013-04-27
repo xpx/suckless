@@ -4,26 +4,31 @@ import java.util.ArrayList;
 
 public class GameHandler {
 	
-	// Stï¿½rrelsen pï¿½ arrayet
+	// Størrelsen på arrayet
 	public static int xSquares = 10;
 	public static int ySquares = 10;
 	public StateHandler handle;
+	public GameObject[] player1;
+	public GameObject[] player2;
+	
 	// public SelectorGrande selector;
 	
 	
-	// Init gï¿½gl
-	GameHandler(){
+	// Init gøgl
+	GameHandler(GameObject[] x1, GameObject[] x2){
+		// Init players
+		player1 = x1;
+		player2 = x2;
+		
+		
 		// Initialiser statehandler-baben
 		handle = new StateHandler(xSquares,ySquares);
 		
-		// Initialiser selectorgrande stuffet
-		// selector = new SelectorGrande();
-		
-		// Send stï¿½rrelsen videre ned til gameobject
+		// Send størrelsen videre ned til gameobject
 		this.Handle();
 	}
 	
-	// Handle functionen til at kï¿½re the stuff
+	// Handle functionen til at køre the stuff
 	public void  Handle()
 	{
 		// update all gameobjects function
@@ -38,12 +43,44 @@ public class GameHandler {
 				}
 			}
 		}	
-		
 	}
 	
-	// Handle functionen til at kï¿½re the stuff
+	// Handle functionen til at køre the stuff
 	public void  updateSelection()
 	{
-		// selector.selectGameObject();
+		updatePlayer(this.player1);
+		updatePlayer(this.player2);
+	}
+	
+	// Ret spillerne
+	private void updatePlayer(GameObject[] player){
+		int x1;
+		x1 = findPlayerIndex(player);
+			player[x1].selected = false;
+		if (x1 < player.length-1)
+		{
+			player[x1+1].selected = true;
+		}
+		else
+		{
+			player[0].selected = true;
+		}
+	}
+	
+	// Find objectet der er selected
+	private int findPlayerIndex(GameObject[] player)
+	{
+		int x1 = 0;
+		if(player != null)
+		{
+			for(int i=0; i<player.length; i++){
+				if (player[i].selected == true){
+					x1 = i;
+					break;
+				}
+			}
+		}
+		return x1;
 	}
 }
+
