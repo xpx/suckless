@@ -31,13 +31,17 @@ public class GameHandler {
 		{
 			for (int j=0; j < ySquares; j++)
 			{
-				//handle.stateArray[i][j].gameobject.Update();
+				if (handle.stateArray[i][j].gameobject != null){
+					for (int k=0; k<handle.stateArray[i][j].gameobject.length; k++){
+						handle.stateArray[i][j].gameobject[k].Update();
+					}
+				}
 			}
 		}	
 		
 	}
 	
-	// Handle functionen til at køre the stuff
+	// Handle functionen til at kï¿½re the stuff
 	public void  updateSelection()
 	{
 		selector.selectGameObject();
