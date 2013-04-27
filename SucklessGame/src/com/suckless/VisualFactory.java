@@ -28,7 +28,9 @@ public class VisualFactory {
 			visualLut.put(go, gov);
 		}
 		return gov;
-		
 	}
-
+	
+	public CommandVisual GetCommandVisual(Command cmd){
+		return new GenericCommandVisual();
+	}
 }

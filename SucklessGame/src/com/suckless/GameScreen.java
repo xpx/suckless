@@ -21,6 +21,8 @@ public class GameScreen implements Screen, Player {
 	OrthographicCamera cam;
 	GameHandler gameHandler;
 	EventBase keyPressInvoke;
+	Command CurrentCommand;
+	Field[][] CurrentWorldState;
 
 	
 	/*
@@ -35,6 +37,7 @@ public class GameScreen implements Screen, Player {
 	}
 	
 	float t;
+	VisualFactory visFact = new VisualFactory();
 	/*Runs the rendering*/
 	@Override
 	public void render(float delta) {
@@ -52,12 +55,21 @@ public class GameScreen implements Screen, Player {
 		shader.begin();
 		shader.SetObjectSize(new Vector2(1,1));
 		shader.SetCameraPosition(new Vector2(0,0),0.05f);
-		//cam.view
-		for(GameVisual vis : visuals){
-			if(vis instanceof GameObjectVisual){
-				GameObjectVisual gobjVis = (GameObjectVisual) vis;
-				gobjVis.Draw(rendState);
+		List<GameVisual> visuals = new LinkedList<GameVisual>();
+	
+		if(CurrentCommand != null){
+		visuals.add(visFact.GetCommandVisual(CurrentCommand));
+		}
+		if(CurrentWorldState != null){
+			List<GameObject> gameObjects = new GameState(CurrentWorldState).GetAllGameObjects();
+			
+			for(GameObject gobj : gameObjects){
+				visuals.add(visFact.GetVisual(gobj));
 			}
+		}
+		
+		for(GameVisual vis : visuals){
+			vis.Draw(rendState);
 		}
 		shader.end();
 		
@@ -100,7 +112,7 @@ public class GameScreen implements Screen, Player {
 	}
 	@Override
 	public void getWorldData(Field[][] fields) {
-		// TODO Auto-generated method stub
+		CurrentWorldState = fields;
 		
 	}
 	@Override
@@ -109,7 +121,7 @@ public class GameScreen implements Screen, Player {
 	}
 	@Override
 	public void CommandChanged(Command command) {
-		// TODO Auto-generated method stub
+		CurrentCommand = command;
 		
 	}
 }
