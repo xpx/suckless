@@ -13,7 +13,5 @@ public class Command {
 	
 	public Command Update(Field[][] states, Player player){
 		return this;
-	}
-	
-	
+	}	
 }

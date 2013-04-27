@@ -1,6 +1,6 @@
 package com.suckless;
 
-public class Selecter extends Command {
+public abstract class Selecter extends Command {
 	public enum StateDirection {
 	    LEFT,
 	    RIGHT,
@@ -12,15 +12,35 @@ public class Selecter extends Command {
 	public int x,y,maxX,maxY;
 	public StateDirection direction;
 	
-	Selecter(GameObject inputObject,int x1, int y1, int maxX1, int maxY1) {
+	Selecter(GameObject inputObject,int x1, int y1) {
 		super(inputObject);
 		x = x1;
 		y = y1;
-		maxX = maxX1;
-		maxY = maxY1;
 	}
 	
-	public Command Update(){
+	public abstract void handleSelect();
+	
+	@Override
+	public Command Select(){
+		switch(direction){
+		case LEFT:	direction = StateDirection.DOWN;
+			break;
+		case RIGHT:	direction = StateDirection.UP;
+			break;
+		case UP:	handleSelect();
+			break;
+		case DOWN:	handleSelect();
+			break;
+		default:
+			break;
+		}
+		return null;
+	}
+	
+		@Override
+	public Command Update(Field[][] states, Player player){
+			maxX = states.length;
+			maxY = states[0].length;
 		switch(direction){
 			case LEFT:	if(x == 0){
 							return null;
