@@ -1,5 +1,8 @@
 package com.suckless;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 
 public class SelectUnitCmdVisual implements CommandVisual {
@@ -12,7 +15,14 @@ public class SelectUnitCmdVisual implements CommandVisual {
 	
 	@Override
 	public void Draw(RenderState gdx) {
-		
+		if(gdx.IsEs1){
+			gdx.getSquareMesh().render(GL10.GL_TRIANGLE_STRIP);
+		}else{
+			gdx.sprog.SetCurrentColor(Color.RED);
+			gdx.sprog.SetObjectPosition(UnitLocation);
+			gdx.sprog.SetObjectSize(UnitSize);
+			gdx.getSquareMesh().render(gdx.sprog,GL20.GL_LINE_LOOP);
+		}
 		
 	}
 

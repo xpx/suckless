@@ -80,35 +80,5 @@ public class GameHandler {
 		}
 	}
 	
-	// Ret spillerne
-	private void updatePlayer(Player player){
-		int x1;
-		x1 = findPlayerIndex(player);
-			player[x1].selected = false;
-		if (x1 < player.length-1)
-		{
-			player[x1+1].selected = true;
-		}
-		else
-		{
-			player[0].selected = true;
-		}
-	}
-	
-	// Find objectet der er selected
-	private int findPlayerIndex(GameObject[] player)
-	{
-		int x1 = 0;
-		if(player != null)
-		{
-			for(int i=0; i<player.length; i++){
-				if (player[i].selected == true){
-					x1 = i;
-					break;
-				}
-			}
-		}
-		return x1;
-	}
 }
 
