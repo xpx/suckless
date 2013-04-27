@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.badlogic.gdx.math.Vector2;
+
 public class TickControl {
 	
 	public static float gameSpeed = 100;
@@ -25,8 +27,18 @@ public class TickControl {
 	}
 	
 	public static void main(String[] args) {
-		final GameHandler gameHandling = new GameHandler(null, null);
+		// Player 1
+		GameObject[] player1 = new GameObject;
+		player1[0] = new Infantry(new Vector2(1.0f,1.0f),1,1,1);
+		player1[1] = new Infantry(new Vector2(1.0f,1.0f),1,1,1);
 		
+		// Player 2
+		GameObject[] player2 = null;
+		player2[0] = new Infantry(new Vector2(1.0f,1.0f),1,1,1);
+		player2[1] = new Infantry(new Vector2(1.0f,1.0f),1,1,1);
+		
+		
+		final GameHandler gameHandling = new GameHandler(player1,player2);
 		new Timer().schedule(new TimerTask() { 
 			public void run()  { 
 				gameHandling.Handle();

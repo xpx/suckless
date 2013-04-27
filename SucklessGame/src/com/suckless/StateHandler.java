@@ -16,7 +16,6 @@ public class StateHandler {
 			for (int j=0; j < x; j++)
 			{
 				Field objecto = new Field();
-				objecto.selected = true;
 				objecto.actualField = new FieldType("grass",2);
 				stateArray[i][j] = objecto;
 			}
