@@ -3,7 +3,10 @@ package com.suckless;
 import com.badlogic.gdx.math.Vector2;
 
 
-public class GameObject {
+public abstract class GameObject {
+	
+	// Is the object selected
+	boolean selected;
 	
 	// Position
 	public Vector2 pos;
@@ -15,6 +18,11 @@ public class GameObject {
 		this.pos = pos;
 		this.hp = hp;
 	}
+	
+	/**
+	 * To be overridden
+	 */
+	public abstract void Update();
 	
 	// Returns x pos rounded to nearest int
 	public int getXTile() {
