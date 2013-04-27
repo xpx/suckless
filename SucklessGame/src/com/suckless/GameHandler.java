@@ -8,12 +8,16 @@ public class GameHandler {
 	public static int xSquares = 10;
 	public static int ySquares = 10;
 	public StateHandler handle;
+	public SelectorGrande selector;
 	
 	
 	// Init gï¿½gl
 	GameHandler(){
-		handle = new StateHandler();
-		handle.ConstructStateArray(xSquares,ySquares);
+		// Initialiser statehandler-baben
+		handle = new StateHandler(xSquares,ySquares);
+		
+		// Initialiser selectorgrande stuffet
+		selector = new SelectorGrande();
 		
 		// Send stï¿½rrelsen videre ned til gameobject
 		this.Handle();
@@ -31,5 +35,11 @@ public class GameHandler {
 			}
 		}	
 		
+	}
+	
+	// Handle functionen til at køre the stuff
+	public void  updateSelection()
+	{
+		selector.selectGameObject();
 	}
 }
