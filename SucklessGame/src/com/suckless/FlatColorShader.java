@@ -11,7 +11,10 @@ public class FlatColorShader extends ShaderProgram {
 		super(FileUtil.readFile("resources/FlatShader/flat.vs"), 
 				FileUtil.readFile("resources/FlatShader/flat.fs"));
 		boolean ok = this.isCompiled();
-		System.out.println(ok);
+		if(!ok){
+			System.out.println("Error while compiling shaders:");
+			System.out.println(this.getLog());
+		}
 	}
 	
 	public void SetCurrentColor(double R, double G, double B, double A){
