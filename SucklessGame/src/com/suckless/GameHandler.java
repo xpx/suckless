@@ -4,22 +4,22 @@ import java.util.ArrayList;
 
 public class GameHandler {
 	
-	// Størrelsen på arrayet
+	// Stï¿½rrelsen pï¿½ arrayet
 	public static int xSquares = 10;
 	public static int ySquares = 10;
 	public StateHandler handle;
 	
 	
-	// Init gøgl
+	// Init gï¿½gl
 	GameHandler(){
 		handle = new StateHandler();
 		handle.ConstructStateArray(xSquares,ySquares);
 		
-		// Send størrelsen videre ned til gameobject
+		// Send stï¿½rrelsen videre ned til gameobject
 		this.Handle();
 	}
 	
-	// Handle functionen til at køre the stuff
+	// Handle functionen til at kï¿½re the stuff
 	public void  Handle()
 	{
 		// update all gameobjects function
@@ -27,7 +27,7 @@ public class GameHandler {
 		{
 			for (int j=0; j < ySquares; j++)
 			{
-				handle.stateArray[i][j].gameobject.Update();
+				//handle.stateArray[i][j].gameobject.Update();
 			}
 		}	
 		
