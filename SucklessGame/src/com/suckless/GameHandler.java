@@ -10,9 +10,10 @@ import com.badlogic.gdx.math.Vector2;
 
 public class GameHandler {
 	
+
 	// St�rrelsen p� arrayet
-	public static int xSquares = 10;
-	public static int ySquares = 10;
+	public int xSquares = 10;
+	public int ySquares = 10;
 	public StateHandler handle;
 	public GameObject[] player1;
 	public GameObject[] player2;
