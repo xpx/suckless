@@ -8,11 +8,18 @@ public class GameHandler {
 	public static int xSquares = 10;
 	public static int ySquares = 10;
 	public StateHandler handle;
+	public GameObject[] player1;
+	public GameObject[] player2;
+	
 	// public SelectorGrande selector;
 	
 	
 	// Init gøgl
-	GameHandler(){
+	GameHandler(GameObject[] x1, GameObject[] x2){
+		// Init players
+		player1 = x1;
+		player2 = x2;
+		
 		// Initialiser statehandler-baben
 		handle = new StateHandler(xSquares,ySquares);
 		
@@ -38,7 +45,6 @@ public class GameHandler {
 				}
 			}
 		}	
-		
 	}
 	
 	// Handle functionen til at køre the stuff
