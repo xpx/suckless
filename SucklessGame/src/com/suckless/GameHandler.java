@@ -1,5 +1,9 @@
 package com.suckless;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
+
+import com.badlogic.gdx.math.Vector2;
 
 
 public class GameHandler {
@@ -10,23 +14,30 @@ public class GameHandler {
 	public StateHandler handle;
 	public GameObject[] player1;
 	public GameObject[] player2;
+	public Player[] players;
+	public Dictionary<Player,Command> commandDict;
 	
 	// public SelectorGrande selector;
 	
-	
-	// Init gøgl
-	GameHandler(GameObject[] x1, GameObject[] x2){
-		// Init players
-		player1 = x1;
-		player2 = x2;
-		
-		
-		// Initialiser statehandler-baben
-		handle = new StateHandler(xSquares,ySquares);
-		
-		// Send størrelsen videre ned til gameobject
-		this.Handle();
+	GameHandler(Player[] players1){
+		players = players1;
+		commandDict = new Hashtable<Player,Command>();
 	}
+	
+	
+//	// Init gøgl
+//	GameHandler(GameObject[] x1, GameObject[] x2){
+//		// Init players
+//		player1 = x1;
+//		player2 = x2;
+//		
+//		
+//		// Initialiser statehandler-baben
+//		handle = new StateHandler(xSquares,ySquares);
+//		
+//		// Send størrelsen videre ned til gameobject
+//		this.Handle();
+//	}
 	
 	// Handle functionen til at køre the stuff
 	public void  Handle()
@@ -42,18 +53,26 @@ public class GameHandler {
 					}
 				}
 			}
-		}	
+		}
+		for(int i = 0; i<players.length;i++)
+		{
+			players[i].getWorldData(handle.stateArray);
+		}
 	}
 	
 	// Handle functionen til at køre the stuff
 	public void  updateSelection()
 	{
-		updatePlayer(this.player1);
-		updatePlayer(this.player2);
+		//new GameObject(new Vector2(1,1),1,1,1);
+		for(int i = 0; i<players.length;i++)
+		{
+			commandDict.put(players[i], commandDict.get(players[i]).Update());
+			players[i].CommandChanged(commandDict.get(players[i]));
+		}
 	}
 	
 	// Ret spillerne
-	private void updatePlayer(GameObject[] player){
+	private void updatePlayer(Player player){
 		int x1;
 		x1 = findPlayerIndex(player);
 			player[x1].selected = false;
