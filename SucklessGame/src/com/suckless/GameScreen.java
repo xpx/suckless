@@ -13,60 +13,25 @@ import com.badlogic.gdx.math.Vector3;
 /*
  * Does the actual rendering and input stuff.
  * */
-public class GameScreen implements Screen {
+public class GameScreen implements Screen, Player {
 
 	List<GameVisual> visuals;
 	InputListener mainInputListener;
 	FlatColorShader shader;
 	OrthographicCamera cam;
+	GameHandler gameHandler;
+	EventBase keyPressInvoke;
+
+	
 	/*
 	 * Sets up the gamescreen and adds input listeners
 	 * */
 	public GameScreen(){
-		
+		keyPressInvoke = new EventBase();
 		mainInputListener = new InputListener();
-		Vector2 v2 = new Vector2(0,0);
-		GameObjectVisual firstObj = new GameObjectVisual(v2,new Vector2(0.2f,0.2f));
 		visuals = new LinkedList<GameVisual>();
-		visuals.add(firstObj);
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		visuals.add(new GameObjectVisual(new Vector2(0.5f,0.5f),new Vector2(0.2f,0.2f)));
-		
-		
-		cam = new OrthographicCamera(100,100);
-		//this.cam.setToOrtho(true,100,100);
-		//cam.zoom = (float) (1 / 1.00);
-		
-		cam.lookAt(0, 0, 0);
-		//cam.direction = new Vector3(0,0,1);
-		
 		Gdx.input.setInputProcessor(mainInputListener);
-		mainInputListener.ActionEvent.AddListener(new EventTest());
+		mainInputListener.ActionEvent.AddListener(keyPressInvoke);
 	}
 	
 	float t;
@@ -133,5 +98,18 @@ public class GameScreen implements Screen {
 		Gdx.input.setInputProcessor(null);
 		
 	}
-
+	@Override
+	public void getWorldData(Field[][] fields) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public EventBase getEvent() {
+		return keyPressInvoke;
+	}
+	@Override
+	public void CommandChanged(Command command) {
+		// TODO Auto-generated method stub
+		
+	}
 }

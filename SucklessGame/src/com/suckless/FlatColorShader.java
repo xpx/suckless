@@ -1,5 +1,6 @@
 package com.suckless;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
@@ -19,6 +20,10 @@ public class FlatColorShader extends ShaderProgram {
 	
 	public void SetCurrentColor(double R, double G, double B, double A){
 		this.setUniformf("Color",(float)R,(float)G,(float)B,(float)A);
+	}
+	
+	public void SetCurrentColor(Color col){
+		this.setUniformf("Color", col);
 	}
 	
 	public void SetCameraPosition(Vector2 cameraPosition,float zoom){

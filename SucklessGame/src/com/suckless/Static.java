@@ -9,7 +9,6 @@ public class Static extends GameObject {
 
 	public Static(Vector2 pos, double hp, boolean passAble, boolean canBeOccupied) {
 		super(pos, hp);
-		// TODO Auto-generated constructor stub
 		
 		this.passAble = passAble;
 		this.canBeOccupied = canBeOccupied;

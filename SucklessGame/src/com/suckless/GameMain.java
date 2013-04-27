@@ -7,7 +7,11 @@ public class GameMain extends Game {
 	 * Creates the game object*/
 	@Override
 	public void create() {
-		setScreen(new GameScreen());
+		GameScreen gs = new GameScreen();
+		new GameHandler(new Player[]{gs, new AI()});
+		setScreen(gs);
+		
+		
 	}
 	
 }
