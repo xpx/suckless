@@ -13,37 +13,25 @@ import com.badlogic.gdx.math.Vector3;
 /*
  * Does the actual rendering and input stuff.
  * */
-public class GameScreen implements Screen implements Player {
+public class GameScreen implements Screen, Player {
 
 	List<GameVisual> visuals;
 	InputListener mainInputListener;
 	FlatColorShader shader;
 	OrthographicCamera cam;
 	GameHandler gameHandler;
+	EventBase keyPressInvoke;
 
-	void getWorldState(GameState state,Command cmd){
-		Field[][] fields = state.Fields;
-		renderFields(fields);
-		if(cmd isinstance MoveCommand){
-			renderMoveCommand((MoveCommand) cmd);
-		}
-	}
+	
 	/*
 	 * Sets up the gamescreen and adds input listeners
 	 * */
 	public GameScreen(){
-		GameObject[] pl1 = new GameObject[]{new Infantry(new Vector2(1.0f,1.0f), 1.0, 1.0f,10.0)};
-		
-		GameObject[] pl2 = new GameObject[]{new Infantry(new Vector2(1.0f,1.0f), 1.0, 1.0f,10.0)};
-		
-		gameHandler = new GameHandler(pl1,pl2);
-		TickControl.startTickControl(gameHandler);
-		
+		keyPressInvoke = new EventBase();
 		mainInputListener = new InputListener();
 		visuals = new LinkedList<GameVisual>();
-		
 		Gdx.input.setInputProcessor(mainInputListener);
-		mainInputListener.ActionEvent.AddListener(new EventTest());
+		mainInputListener.ActionEvent.AddListener(keyPressInvoke);
 	}
 	
 	float t;
@@ -110,5 +98,18 @@ public class GameScreen implements Screen implements Player {
 		Gdx.input.setInputProcessor(null);
 		
 	}
-
+	@Override
+	public void getWorldData(Field[][] fields) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public EventBase getEvent() {
+		return keyPressInvoke;
+	}
+	@Override
+	public void CommandChanged(Command command) {
+		// TODO Auto-generated method stub
+		
+	}
 }

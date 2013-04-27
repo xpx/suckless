@@ -2,6 +2,8 @@ package com.suckless;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.badlogic.gdx.math.Vector2;
 
@@ -19,12 +21,40 @@ public class GameHandler {
 	
 	// public SelectorGrande selector;
 	
+	private class playerEventHandler implements EventListener{
 
+		Player playerObject;
+		GameHandler gameHandler;
+		playerEventHandler(Player plyObj, GameHandler handler){
+			playerObject = plyObj;
+			gameHandler = handler;
+			
+		}
+		@Override
+		public void Invoke() {
+			gameHandler.onPlayerSelectEvent(playerObject);
+			
+		}
+	}
+	List<playerEventHandler> playerEventHandlers;
+	
 	GameHandler(Player[] players1){
+		playerEventHandlers = new LinkedList<playerEventHandler>();
 		players = players1;
+		for(Player ply : players){
+			playerEventHandler pListener = new playerEventHandler(ply,this);
+			playerEventHandlers.add(pListener);
+			EventBase evt = ply.getEvent();
+			evt.AddListener(pListener);
+		}
 		commandDict = new Hashtable<Player,Command>();
+		
 	}
 	
+	void onPlayerSelectEvent(Player player){
+		Command cmd = commandDict.get(player);
+		commandDict.put(player,cmd.Select());
+	}
 	
 //	// Init g�gl
 //	GameHandler(GameObject[] x1, GameObject[] x2){
