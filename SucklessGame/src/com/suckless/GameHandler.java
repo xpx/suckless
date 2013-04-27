@@ -8,7 +8,7 @@ public class GameHandler {
 	public static int xSquares = 10;
 	public static int ySquares = 10;
 	public StateHandler handle;
-	public SelectorGrande selector;
+	// public SelectorGrande selector;
 	
 	
 	// Init g�gl
@@ -17,7 +17,7 @@ public class GameHandler {
 		handle = new StateHandler(xSquares,ySquares);
 		
 		// Initialiser selectorgrande stuffet
-		selector = new SelectorGrande();
+		// selector = new SelectorGrande();
 		
 		// Send st�rrelsen videre ned til gameobject
 		this.Handle();
@@ -44,6 +44,6 @@ public class GameHandler {
 	// Handle functionen til at k�re the stuff
 	public void  updateSelection()
 	{
-		selector.selectGameObject();
+		// selector.selectGameObject();
 	}
 }
