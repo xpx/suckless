@@ -11,6 +11,7 @@ public class MoveAble extends GameObject {
 		super(pos, hp);
 		// TODO Auto-generated constructor stub
 		this.speed = speed;
+		target = new Vector2(0,0);
 	}
 	
 	public void Update() {
