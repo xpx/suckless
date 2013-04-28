@@ -27,18 +27,11 @@ public class AI implements Player{
 		cnt = 0;
 		inited = false; 
 		objects = new ArrayList<GameObject>();
-		
-		
+
 		new Timer().schedule(new TimerTask() { 
 			public void run()  { 
-				cnt += 1;
-				if(cnt >= nextTarget){
-					cnt = 0;
-					nextTarget = (rnd.nextInt(500)) / 10;
-					ink.Invoke();
-				}
 				
-/*				if (!inited) {
+				if (!inited) {
 					objects = GetOwnObjects(stateArray);
 					if (objects != null)
 						inited = true;
@@ -60,7 +53,7 @@ public class AI implements Player{
 						}
 					}
 				}
-				}*/
+				}
 			}
 		}, 0, 10);
 		
@@ -74,10 +67,10 @@ public class AI implements Player{
 					for (GameObject go : cell.gameobject) {
 						if (go.owner == This) {
 							objects.add(go);
-							System.out
+							/*System.out
 									.printf("Added object %d which is at pos %f, %f \n",
 											System.identityHashCode(go),
-											go.pos.x, go.pos.y);
+											go.pos.x, go.pos.y);*/
 						}
 					}
 				}

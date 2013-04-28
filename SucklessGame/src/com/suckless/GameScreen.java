@@ -22,7 +22,6 @@ public class GameScreen implements Screen, Player {
 	EventBase keyPressInvoke;
 	Command CurrentCommand;
 	Field[][] CurrentWorldState;
-
 	
 	/*
 	 * Sets up the gamescreen and adds input listeners
@@ -38,18 +37,25 @@ public class GameScreen implements Screen, Player {
 	float t;
 	VisualFactory visFact = new VisualFactory(this);
 	/*Runs the rendering*/
+	int iteration = 0;
 	@Override
 	public void render(float delta) {
 		
+		gameHandler.Handle();
+		if(iteration++ % 6  ==0){
+		gameHandler.updateSelection();
+		}
 		GLCommon gl = Gdx.gl;
 		if(shader == null){
 			shader = new FlatColorShader();
 		}
 		t += delta;
 		//gl.glClearColor(1.0f/2.0f, (float)Math.sin(t) * 0.5f/2.0f + 0.5f/2.0f, 0.0f, 1.0f);
-		gl.glClearColor(1.0f,0.3f, 0.7f, 1.0f);
+		gl.glClearColor(0.0f,0.0f, 0.0f, 1.0f);
 		
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		gl.glEnable(Gdx.gl20.GL_BLEND);
+		gl.glLineWidth(0.5f);
 		RenderState rendState = new RenderState();
 		rendState.sprog = shader;
 		rendState.IsEs1 = false;
@@ -60,7 +66,16 @@ public class GameScreen implements Screen, Player {
 		shader.SetCameraPosition(rendState.CurrentCameraPosition,rendState.Zoom * 2f);
 		
 		List<GameVisual> visuals = new LinkedList<GameVisual>();
-	
+		int x = 0;
+		CellDrawer cd = new CellDrawer();
+		for(Field[] col : CurrentWorldState){
+			int y = 0;
+			for(Field cell : col){
+				cd.Draw(rendState,x,y);
+				y++;
+			}
+			x++;
+		}
 		
 		if(CurrentWorldState != null){
 			List<GameObject> gameObjects = new GameState(CurrentWorldState).GetAllGameObjects();

@@ -9,11 +9,11 @@ import com.badlogic.gdx.math.Vector2;
 public class TickControl {
 	
 	public static float gameSpeed = 20;
-	public static long tickSize = 200;
+	public static long tickSize = 400;
 	public static long updateSelector = 50;
 	
 	public static void startTickControl(final GameHandler gameHandling){
-		new Timer().schedule(new TimerTask() { 
+		/*new Timer().schedule(new TimerTask() { 
 			public void run()  { 
 				gameHandling.Handle();
 			}
@@ -23,6 +23,6 @@ public class TickControl {
 			public void run()  { 
 				gameHandling.updateSelection();
 			}
-		}, 0, updateSelector);
+		}, 0, updateSelector);*/
 	}
 }

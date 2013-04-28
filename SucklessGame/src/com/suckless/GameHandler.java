@@ -48,7 +48,7 @@ public class GameHandler {
 	
 	List<playerEventHandler> playerEventHandlers;
 	
-	GameHandler(Player[] players1,int sizeX,int sizeY){
+	public GameHandler(Player[] players1,int sizeX,int sizeY){
 		xSquares = sizeX;
 		ySquares = sizeY;
 		handle = new StateHandler(sizeX,sizeY);

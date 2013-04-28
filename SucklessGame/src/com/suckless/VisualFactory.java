@@ -47,7 +47,7 @@ public class VisualFactory {
 	public CommandVisual GetCommandVisual(Command cmd){
 		if(cmd instanceof Selecter){
 			Selecter slc = (Selecter) cmd;
-			return new SelectLocationCmdVisual(slc.x,slc.y);
+			return new SelectLocationCmdVisual((Selecter)cmd );
 		}else if(cmd instanceof ShufflerHeleDagen){
 			return new SelectUnitCmdVisual((ShufflerHeleDagen)cmd);
 		}

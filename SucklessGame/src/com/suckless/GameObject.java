@@ -26,6 +26,8 @@ public abstract class GameObject {
 	// size of tile-array
 	int maxX = 0,maxY = 0;
 	
+	public Player attacking = null;
+	
 	// HP
 	public double hp;
 	

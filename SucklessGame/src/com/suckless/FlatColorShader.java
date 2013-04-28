@@ -8,9 +8,12 @@ import com.badlogic.gdx.math.Vector2;
 public class FlatColorShader extends ShaderProgram {
 
 	public FlatColorShader() {
-		
-		super(FileUtil.readFile("resources/FlatShader/flat.vs"), 
-				FileUtil.readFile("resources/FlatShader/flat.fs"));
+		super("#version 100 \nprecision mediump float;\n attribute vec2 vertex_position; uniform vec2 worldLocation;\n" +
+				"uniform vec2 cameraPosition; uniform float zoom;uniform vec2 objectSize;\n"+
+				"void main(){\n gl_Position = vec4((vertex_position*objectSize + worldLocation - cameraPosition)*zoom,0.0,1.0) * vec4(1.0,-1.0,0.0,1.0);\n}\n",
+				"#version 100\nprecision mediump float;\nuniform vec4 Color;\nvoid main(){\ngl_FragColor = Color;\n}\n");
+		/*super(FileUtil.readFile("resources/FlatShader/flat.vs"), 
+				FileUtil.readFile("resources/FlatShader/flat.fs"));*/
 		boolean ok = this.isCompiled();
 		if(!ok){
 			System.out.println("Error while compiling shaders:");
