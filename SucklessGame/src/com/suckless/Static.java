@@ -14,7 +14,7 @@ public class Static extends GameObject {
 		this.canBeOccupied = canBeOccupied;
 	}
 	
-	public void Update(){
+	public void Update(Field[][] states){
 		// Pass
 	}
 

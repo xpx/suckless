@@ -34,7 +34,7 @@ public class AI implements Player{
 /*				cnt += 1;
 				if(cnt >= nextTarget){
 					cnt = 0;
-					nextTarget = (rnd.nextInt(3000)) / 10;
+					nextTarget = (rnd.nextInt(500)) / 10;
 					ink.Invoke();
 				}*/
 				
@@ -100,8 +100,6 @@ public class AI implements Player{
 
 	@Override
 	public void CommandChanged(Command command) {
-		if (command instanceof Command) {
-		}
 	}
 
 }

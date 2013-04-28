@@ -11,8 +11,6 @@ public class GameMain extends Game {
 		TickControl.startTickControl(new GameHandler(new Player[]{gs, new AI()},10,10));
 		setScreen(gs);
 		
-		
-		
 	}
 	
 }

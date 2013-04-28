@@ -16,9 +16,9 @@ public class Tank extends MoveAble {
 		this.range = range;
 	}
 	
-	public void Update() {
+	public void Update(Field[][] states) {
 		// Implement special cases for infantry
-		super.Update();
+		super.Update(states);
 	}
 
 }

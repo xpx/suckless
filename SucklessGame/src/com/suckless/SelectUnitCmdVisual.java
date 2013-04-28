@@ -8,9 +8,9 @@ import com.badlogic.gdx.math.Vector2;
 public class SelectUnitCmdVisual implements CommandVisual {
 	Vector2 UnitLocation;
 	Vector2 UnitSize;
-	public SelectUnitCmdVisual(Vector2 loc, Vector2 size){
-		UnitLocation = loc;
-		UnitSize = size;
+	public SelectUnitCmdVisual(ShufflerHeleDagen shuffle){
+		UnitLocation = shuffle.selectedObject.pos;
+		UnitSize = new Vector2(0.3f,0.3f);
 	}
 	
 	@Override

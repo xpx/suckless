@@ -1,5 +1,6 @@
 package com.suckless;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -80,34 +81,24 @@ public class GameHandler {
 		}
 		
 		// Hard coded game setup
-		AddGameObject(new Infantry(new Vector2(1,1), 10, 0.01f, 1.0),players[0]);
-		AddGameObject(new Tank(new Vector2(1,5), 10, 0.01f, 1.0,1),players[0]);
-		AddGameObject(new Infantry(new Vector2(2,8), 10, 0.01f, 1.0),players[0]);
+		for(float i = 2; i < 4;i++){
+		AddGameObject(new Infantry(new Vector2(1,i), 10, 0.01f, 1.0),players[0]);
+		AddGameObject(new Infantry(new Vector2(2,i), 10, 0.01f, 1.0),players[0]);
 		
 		// Hard coded game setup
-		AddGameObject(new Infantry(new Vector2(9,1), 10, 0.01f, 1.0),players[1]);
-		AddGameObject(new Infantry(new Vector2(9,3), 10, 0.01f, 1.0),players[1]);
-		AddGameObject(new Tank(new Vector2(7,6), 10, 0.01f, 1.0,1),players[1]);
-		
+		AddGameObject(new Infantry(new Vector2(9,i), 10, 0.01f, 1.0),players[1]);
+		AddGameObject(new Infantry(new Vector2(8,i), 10, 0.01f, 1.0),players[1]);
+		}
 		// Add static objects public Static(Vector2 pos, double hp, boolean passAble, boolean canBeOccupied)
-		AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
+		// AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
 	}
 	
 	void onPlayerSelectEvent(Player player){
 		Command cmd = commandDict.get(player);
 		if(cmd != null ){
-			cmd = cmd.Select(handle.stateArray,player);
+			cmd.Select(handle.stateArray,player);
 		}
-		if(cmd == null){
-			List<GameObject> go = new GameState(handle.stateArray).GetAllGameObjects();
-			for(GameObject go2 : go){
-				if(go2.owner == player){
-					ShufflerHeleDagen shd = new ShufflerHeleDagen(go2);	
-					cmd = shd;
-				}
-			}
-		}
-		commandDict.put(player,cmd);
+		
 	}
 	
 //	// Init g�gl
@@ -127,12 +118,13 @@ public class GameHandler {
 	// Handle functionen til at k�re the stuff
 	public void  Handle()
 	{
-		// update all gameobjects function
+		updateAllObjectsToCells();
 		
+		// update all gameobjects function
 		for(Field[] rows: handle.stateArray){
 			for(Field cell : rows){
 				for(GameObject go : cell.gameobject){
-					go.Update();
+					go.Update(handle.stateArray);
 				}
 			}
 		}
@@ -140,6 +132,34 @@ public class GameHandler {
 		for(int i = 0; i<players.length;i++)
 		{
 			players[i].getWorldData(handle.stateArray);
+		}
+
+		for(GameObject gameobj : new GameState(handle.stateArray).GetAllGameObjects()){
+			//System.out.print("\n hp:" + gameobj.hp);
+			if(gameobj.hp <= 0){
+				handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.remove(gameobj);				
+			}
+		}
+
+	}
+	
+	public void updateAllObjectsToCells(){
+		for(int i = 0; i<handle.stateArray.length; i++){
+			for(int j = 0; j<handle.stateArray[0].length; j++){
+				List<GameObject> toChange = new LinkedList<GameObject>();
+				for(GameObject gameobj : handle.stateArray[i][j].gameobject){
+					gameobj.pos.x = Math.max(0, Math.min(gameobj.pos.x, handle.stateArray.length -1 + 0.4f));
+					gameobj.pos.y = Math.max(0, Math.min(gameobj.pos.y, handle.stateArray[0].length -1 + 0.4f));
+					if(new Vector2(gameobj.getXTile(),gameobj.getYTile()) != new Vector2(i,j)){
+						toChange.add(gameobj);
+						
+					}
+				}
+				for(GameObject gameobj : toChange){
+					handle.stateArray[i][j].gameobject.remove(gameobj);
+					handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.add(gameobj);
+				}
+			}
 		}
 	}
 	
@@ -153,6 +173,10 @@ public class GameHandler {
 			Command obj = commandDict.get(ply);
 			if(obj != null){
 				obj = obj.Update(handle.stateArray, players[i]);
+				if(obj != null){
+					commandDict.put(players[i],obj);
+					players[i].CommandChanged(commandDict.get(players[i]));
+				}
 					
 			}
 			
@@ -162,13 +186,14 @@ public class GameHandler {
 				for(GameObject go2 : go){
 					if(go2.owner == players[i]){
 						ShufflerHeleDagen shd = new ShufflerHeleDagen(go2);	
+						commandDict.put(players[i],shd);
+						players[i].CommandChanged(commandDict.get(players[i]));
 						obj = shd;
 						break;
 					}
 				}
 			}
-			commandDict.put(players[i],obj);
-			players[i].CommandChanged(commandDict.get(players[i]));
+			
 		}
 	}
 	
