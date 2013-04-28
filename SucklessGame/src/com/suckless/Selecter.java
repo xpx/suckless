@@ -63,14 +63,14 @@ public abstract class Selecter extends Command {
 							x = x+1;
 						}
 				break;
-			case UP:	if(y <= 0){
+			case UP:	if(y >= maxY){
 							return null;
 						}
 						else{
 							y = y+1;
 						}
 				break;
-			case DOWN:	if(y >= maxY){
+			case DOWN:	if(y < 0){
 							return null;
 						}
 						else{
