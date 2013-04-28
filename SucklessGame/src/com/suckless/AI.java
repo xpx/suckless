@@ -1,17 +1,45 @@
 package com.suckless;
 
-public class AI implements Player{
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
+public class AI implements Player{
+	class counter{
+		public int A;
+	}
+	EventBase ink;
+	Timer tmr;
+	Random rnd;
+	int cnt;
+	int nextTarget;
+	public AI(){
+		rnd = new Random();
+		ink = new EventBase();
+		cnt = 0;
+		new Timer().schedule(new TimerTask() { 
+			public void run()  { 
+				cnt += 1;
+				if(cnt >= nextTarget){
+					cnt = 0;
+					nextTarget = (rnd.nextInt(3000)) / 10;
+					ink.Invoke();
+				}
+			}
+		}, 0, 10);
+		
+		
+	}
+	
 	@Override
 	public void getWorldData(Field[][] fields) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public EventBase getEvent() {
-		// TODO Auto-generated method stub
-		return null;
+		return ink;
 	}
 
 	@Override
