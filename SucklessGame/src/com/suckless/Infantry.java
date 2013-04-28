@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Infantry extends MoveAble {
 	
 	public double damage;
-	public double range = 0.5;
+	public double range = 2;
 	Random rn;
 	
 	public Infantry(Vector2 pos, double hp, float speed, double damage) {
