@@ -37,6 +37,8 @@ public class MoveAble extends GameObject {
 	public void Move(Field[][] states) {
 		
 		Vector2 tmp;
+		float newXPos;
+		float newYPos;
 		
 		// Check if object not at target
 		if(this.pos.cpy().dst(this.target) != 0.0) {
@@ -57,19 +59,44 @@ public class MoveAble extends GameObject {
 				moving = true;
 				// Calculate and update position new position
 				// TODO check is we are to add or sub distance
-				if (pos.x < target.x){
-					this.pos.x = this.pos.x + TickControl.gameSpeed*this.speed*(Math.abs(this.pos.x-target.x)/tmp.len());					
-				} else {
-					this.pos.x = this.pos.x - TickControl.gameSpeed*this.speed*(Math.abs(this.pos.x-target.x)/tmp.len());
+				newXPos = 0.0f;
+				newYPos = 0.0f;
+				if (pos.x < target.x && pos.y < target.y){
+					newXPos = this.pos.x + TickControl.gameSpeed*this.speed*(Math.abs(this.pos.x-target.x)/tmp.len());
+					newYPos = this.pos.y + TickControl.gameSpeed*this.speed*(Math.abs(this.pos.y-target.y)/tmp.len());
+				} else if (pos.x > target.x && pos.y < target.y) {
+					newXPos = this.pos.x - TickControl.gameSpeed*this.speed*(Math.abs(this.pos.x-target.x)/tmp.len());
+					newYPos = this.pos.y + TickControl.gameSpeed*this.speed*(Math.abs(this.pos.y-target.y)/tmp.len());
+				} else if (pos.x < target.x && pos.y > target.y) {
+					newXPos = this.pos.x + TickControl.gameSpeed*this.speed*(Math.abs(this.pos.x-target.x)/tmp.len());
+					newYPos = this.pos.y - TickControl.gameSpeed*this.speed*(Math.abs(this.pos.y-target.y)/tmp.len());
+				} else if (pos.x > target.x && pos.y > target.y) {
+					newXPos = this.pos.x - TickControl.gameSpeed*this.speed*(Math.abs(this.pos.x-target.x)/tmp.len());
+					newYPos = this.pos.y - TickControl.gameSpeed*this.speed*(Math.abs(this.pos.y-target.y)/tmp.len());
 				}
-				if (pos.y < target.y){
-					this.pos.y = this.pos.y + TickControl.gameSpeed*this.speed*(Math.abs(this.pos.y-target.y)/tmp.len());
-				} else {
-					this.pos.y = this.pos.y - TickControl.gameSpeed*this.speed*(Math.abs(this.pos.y-target.y)/tmp.len());
+				if (ValidMove(newXPos, newYPos, states)) {
+					this.pos.x = newXPos;
+					this.pos.y = newYPos;
 				}
 			}
 			
 		}
+	}
+	
+	public boolean ValidMove(float x, float y, Field[][] states) {
+		Static tmp;
+		if (states[Math.round(x)][Math.round(y)].gameobject.isEmpty() == false) {
+			for (GameObject gameObj : states[Math.round(x)][Math.round(y)].gameobject) {
+				if (gameObj instanceof Static) {
+					tmp = (Static)gameObj;
+					if (tmp.passAble == false) {
+						return false;
+					}
+				}
+			}
+		}
+		
+		return true;
 	}
 
 	@Override
