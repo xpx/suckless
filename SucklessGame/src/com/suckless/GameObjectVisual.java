@@ -23,7 +23,7 @@ public class GameObjectVisual implements GameVisual{
 	@Override
 	public void Draw(RenderState gdx) {
 		// TODO Auto-generated method stub
-		Loc = Loc.add(new Vector2(rgen.nextFloat() - 0.5f,rgen.nextFloat() - 0.5f));
+		//Loc = Loc.add(new Vector2(rgen.nextFloat() - 0.5f,rgen.nextFloat() - 0.5f));
 		
 		if(gdx.IsEs1){
 			gdx.getSquareMesh().render(GL10.GL_TRIANGLE_STRIP);

@@ -4,6 +4,7 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
 
@@ -36,11 +37,20 @@ public class GameHandler {
 			
 		}
 	}
+	
+	public void AddGameObject(GameObject go, Player player){
+		int xtile = go.getXTile();
+		int ytile = go.getYTile();
+		go.owner = player;
+		handle.stateArray[xtile][ytile].gameobject.add(go);
+	}
+	
 	List<playerEventHandler> playerEventHandlers;
 	GameHandler(Player[] players1){
 		handle = new StateHandler(10,10);
 		playerEventHandlers = new LinkedList<playerEventHandler>();
 		players = players1;
+		Random rnd = new Random();
 		for(Player ply : players){
 			playerEventHandler pListener = new playerEventHandler(ply,this);
 			playerEventHandlers.add(pListener);
@@ -48,6 +58,7 @@ public class GameHandler {
 			if(evt != null){
 				evt.AddListener(pListener);
 			}
+			AddGameObject(new Infantry(new Vector2(rnd.nextFloat(),rnd.nextFloat()), 10, 0.0f, 1.0),ply);
 		}
 		commandDict = new Hashtable<Player,Command>();
 	}
@@ -55,8 +66,13 @@ public class GameHandler {
 	void onPlayerSelectEvent(Player player){
 		Command cmd = commandDict.get(player).Select(handle.stateArray,player);
 		if(cmd == null){
-			ShufflerHeleDagen shd = new ShufflerHeleDagen(null);	
-			cmd = shd;
+			List<GameObject> go = new GameState(handle.stateArray).GetAllGameObjects();
+			for(GameObject go2 : go){
+				if(go2.owner == player){
+					ShufflerHeleDagen shd = new ShufflerHeleDagen(go2);	
+					cmd = shd;
+				}
+			}
 		}
 		commandDict.put(player,cmd);
 	}
@@ -100,11 +116,22 @@ public class GameHandler {
 		//new GameObject(new Vector2(1,1),1,1,1);
 		for(int i = 0; i<players.length;i++)
 		{
-			Command obj = commandDict.get(players[i]).Update(handle.stateArray, players[i]);
+			Player ply = players[i];
+			Command obj = commandDict.get(ply);
+			if(obj != null){
+				System.out.println(obj);	
+				obj.Update(handle.stateArray, players[i]);
+					
+			}
 			// aktiver shuffling
 			if(obj == null){
-				ShufflerHeleDagen shd = new ShufflerHeleDagen(null);	
-				obj = shd;
+				List<GameObject> go = new GameState(handle.stateArray).GetAllGameObjects();
+				for(GameObject go2 : go){
+					if(go2.owner == players[i]){
+						ShufflerHeleDagen shd = new ShufflerHeleDagen(go2);	
+						obj = shd;
+					}
+				}
 			}
 			commandDict.put(players[i],obj);
 			players[i].CommandChanged(commandDict.get(players[i]));

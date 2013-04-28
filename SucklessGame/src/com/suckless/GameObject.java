@@ -1,11 +1,18 @@
 package com.suckless;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.badlogic.gdx.math.Vector2;
 
 
 public abstract class GameObject {
 	// Define owner
 	public Player owner;
+	
+	public List<Command> GetAvailableCommands(){
+		return new LinkedList<Command>();
+	}
 	
 	// Is the object selected
 	boolean selected;

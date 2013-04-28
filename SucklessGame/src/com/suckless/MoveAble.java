@@ -1,5 +1,8 @@
 package com.suckless;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.badlogic.gdx.math.Vector2;
 
 public class MoveAble extends GameObject {
@@ -7,10 +10,18 @@ public class MoveAble extends GameObject {
 	public float speed;
 	public Vector2 target;
 
+	public List<Command> GetAvailableCommands(){
+		LinkedList<Command> out = new LinkedList<Command>();
+		out.add(new MoveCommand(this,0,0));
+		out.addAll(super.GetAvailableCommands());
+		return out;
+	}
+	
 	public MoveAble(Vector2 pos, double hp, float speed) {
 		super(pos, hp);
 		// TODO Auto-generated constructor stub
 		this.speed = speed;
+		this.target = pos;
 	}
 	
 	public void Update() {

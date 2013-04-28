@@ -1,17 +1,13 @@
 package com.suckless;
 
-public class Command {
+public abstract class Command {
 	GameObject selectedObject;
 	Command(GameObject inputObject){
 		selectedObject = inputObject;
 	}
 	
 	// Brugeren trykker enter
-	public Command Select(Field[][] states, Player player){
-		return new Command(selectedObject);
-	}
+	public abstract Command Select(Field[][] states, Player player);
 	
-	public Command Update(Field[][] states, Player player){
-		return this;
-	}
+	public abstract Command Update(Field[][] states, Player player);
 }
