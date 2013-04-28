@@ -21,6 +21,7 @@ public class GameHandler {
 	public Player[] players;
 	public Dictionary<Player,Command> commandDict;
 	private ShufflerHeleDagen megaShuffler;
+	public MapHandler mapHandler;
 	
 	// public SelectorGrande selector;
 	private class playerEventHandler implements EventListener{
@@ -48,10 +49,11 @@ public class GameHandler {
 	
 	List<playerEventHandler> playerEventHandlers;
 	
-	public GameHandler(Player[] players1,int sizeX,int sizeY){
+	public GameHandler(Player[] players1,int sizeX,int sizeY,MapHandler mp){
 		xSquares = sizeX;
 		ySquares = sizeY;
 		handle = new StateHandler(sizeX,sizeY);
+		mapHandler = mp;
 		playerEventHandlers = new LinkedList<playerEventHandler>();
 		players = players1;
 		Random rnd = new Random();
@@ -65,10 +67,11 @@ public class GameHandler {
 			//AddGameObject(new Infantry(new Vector2(rnd.nextFloat(),rnd.nextFloat()), 10, 0.001f, 1.0),ply);
 		}
 		
-		scenarioHardCode();
+
+		// scenarioHardCode();
+		
 		
 		commandDict = new Hashtable<Player,Command>();
-		
 	}
 	
 	private void scenarioHardCode()
@@ -145,7 +148,7 @@ public class GameHandler {
 				handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.remove(gameobj);				
 			}
 		}
-
+		mapHandler.Update(handle,players);
 	}
 	
 	public void updateAllObjectsToCells(){

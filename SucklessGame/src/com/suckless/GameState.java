@@ -21,4 +21,18 @@ public class GameState {
 		}
 		return out;
 	}
+	
+	public List<Player> GetAllPlayersAlive(Field[][] states){
+		List<GameObject> go = new GameState(states).GetAllGameObjects();
+		List<Player> players = new LinkedList<Player>();
+		for(GameObject obj : go){
+			if(obj.owner != null)
+			{
+				if(players.contains(obj.owner) == false){
+					players.add(obj.owner);
+				}
+			}
+		}
+		return players;
+	}
 }

@@ -8,9 +8,11 @@ public class GameMain extends Game {
 	@Override
 	public void create() {
 		GameScreen gs = new GameScreen();
-		GameHandler gh = new GameHandler(new Player[]{gs, new AI()},10,10);
+		MapHandler mp = new MapHandler(gs);
+		GameHandler gh = new GameHandler(new Player[]{gs, new AI()},10,10,mp);
 		gs.gameHandler = gh;
 		setScreen(gs);
+
 		
 	}
 	
