@@ -58,7 +58,7 @@ public class GameHandler {
 			if(evt != null){
 				evt.AddListener(pListener);
 			}
-			AddGameObject(new Infantry(new Vector2(rnd.nextFloat(),rnd.nextFloat()), 10, 0.0f, 1.0),ply);
+			AddGameObject(new Infantry(new Vector2(rnd.nextFloat(),rnd.nextFloat()), 10, 0.001f, 1.0),ply);
 		}
 		commandDict = new Hashtable<Player,Command>();
 	}

@@ -41,6 +41,7 @@ public class GameScreen implements Screen, Player {
 	/*Runs the rendering*/
 	@Override
 	public void render(float delta) {
+		
 		GLCommon gl = Gdx.gl;
 		if(shader == null){
 			shader = new FlatColorShader();
