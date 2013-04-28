@@ -18,6 +18,16 @@ static protected Mesh squareMesh;
 		return squareMesh;
 	}
 	
+	Mesh triangleMesh;
+	public Mesh getTriangleMesh(){
+		if(triangleMesh == null){
+			triangleMesh = new Mesh(true,3*2,4,new VertexAttribute(0,2,"vertex_position"));
+			triangleMesh.setVertices(new float[]{-1.0f,-1.0f,1.0f,-1.0f,1.0f,1.0f});
+			triangleMesh.setIndices(new short[]{0,1,2});
+		}
+		return triangleMesh;
+	}
+	
 	Mesh unitLine;
 	
 	public Mesh getUnitLine(){

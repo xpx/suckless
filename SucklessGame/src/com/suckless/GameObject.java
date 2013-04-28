@@ -25,12 +25,15 @@ public abstract class GameObject {
 	
 	public Player attacking = null;
 	
+	public double MaxHp;
+	
 	// HP
 	public double hp;
 	
 	public GameObject(Vector2 pos, double hp) {
 		this.pos = pos;
 		this.hp = hp;
+		MaxHp = hp;
 	}
 	
 	/**

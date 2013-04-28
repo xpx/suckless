@@ -31,7 +31,7 @@ public class AI implements Player{
 		new Timer().schedule(new TimerTask() { 
 			public void run()  { 
 				
-				if (!inited) {
+			/*	if (!inited) {
 					objects = GetOwnObjects(stateArray);
 					if (objects != null)
 						inited = true;
@@ -53,7 +53,7 @@ public class AI implements Player{
 						}
 					}
 				}
-				}
+				}*/
 			}
 		}, 0, 10);
 		

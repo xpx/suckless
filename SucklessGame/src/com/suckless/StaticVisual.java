@@ -5,8 +5,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class StaticVisual extends GameObjectVisual {
 
-	public StaticVisual(Vector2 location) {
-		super(location, new Vector2(0.2f,0.2f));
+	public StaticVisual(GameObject go) {
+		super(go, new Vector2(0.25f,0.25f));
 		
 	}
 	

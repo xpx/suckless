@@ -40,8 +40,9 @@ public class GameScreen implements Screen, Player {
 	int iteration = 0;
 	@Override
 	public void render(float delta) {
-		
-		gameHandler.Handle();
+		if(iteration % 8 == 0){
+			gameHandler.Handle();
+		}
 		if(iteration++ % 6  ==0){
 		gameHandler.updateSelection();
 		}
