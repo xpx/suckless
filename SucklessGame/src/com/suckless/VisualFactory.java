@@ -16,7 +16,10 @@ public class VisualFactory {
 	
 	GameObjectVisual makeGameObjectVisual(GameObject go){
 		if(go instanceof Infantry){
-			return new InfantryVisual(go.pos.cpy());
+			return new InfantryVisual((Infantry)go);
+
+		} else if (go instanceof Static) {
+			return new StaticVisual(go.pos.cpy());
 		}
 		return new GameObjectVisual(go.pos.cpy(),new Vector2(1.0f,1.0f));
 	}
