@@ -85,8 +85,8 @@ public class MoveAble extends GameObject {
 	
 	public boolean ValidMove(float x, float y, Field[][] states) {
 		Static tmp;
-		if (states[Math.round(x)][Math.round(y)].gameobject.isEmpty() == false) {
-			for (GameObject gameObj : states[Math.round(x)][Math.round(y)].gameobject) {
+		if (states[Math.min(9, Math.round(x))][Math.min(9,Math.round(y))].gameobject.isEmpty() == false) {
+			for (GameObject gameObj : states[Math.min(9, Math.round(x))][Math.min(9,Math.round(y))].gameobject) {
 				if (gameObj instanceof Static) {
 					tmp = (Static)gameObj;
 					if (tmp.passAble == false) {
