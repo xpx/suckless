@@ -101,6 +101,7 @@ public class MoveAble extends GameObject {
 
 	@Override
 	public void Update(Field[][] states) {
+		super.Update(states);
 		Move(states);
 	}
 

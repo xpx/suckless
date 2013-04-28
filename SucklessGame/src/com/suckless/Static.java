@@ -15,7 +15,7 @@ public class Static extends GameObject {
 	}
 	
 	public void Update(Field[][] states){
-		// Pass
+		super.Update(states);
 	}
 
 }

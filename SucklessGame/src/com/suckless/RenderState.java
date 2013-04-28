@@ -1,5 +1,7 @@
 package com.suckless;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.AudioDevice;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.VertexAttribute;
@@ -7,6 +9,22 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 
 public class RenderState {
+	
+	public void PlaySound(float[] samples){
+		GetAudioDevice().writeSamples(samples, 0, samples.length);
+	}
+	
+	static AudioDevice audioDev;
+	public AudioDevice GetAudioDevice(){
+		if(audioDev == null){
+			AudioDevice device = Gdx.audio.newAudioDevice(44100, true);
+			audioDev = device;
+		}
+		return audioDev;
+	}
+	
+	
+	
 static protected Mesh squareMesh;
 	
 	public Mesh getSquareMesh(){

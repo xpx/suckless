@@ -82,8 +82,8 @@ public class GameHandler {
 		
 		// Hard coded game setup
 		for(float i = 2; i < 4;i++){
-		AddGameObject(new Infantry(new Vector2(1,i), 10, true, 0.01f, 1.0),players[0]);
-		AddGameObject(new Infantry(new Vector2(2,i), 10, true, 0.01f, 1.0),players[0]);
+		AddGameObject(new Infantry(new Vector2(1,i), 100, true, 0.01f, 1.0),players[0]);
+		AddGameObject(new Infantry(new Vector2(2,i), 100, true, 0.01f, 1.0),players[0]);
 		
 		AddGameObject(new Static(new Vector2(4,3), 1, false, false, false),null);
 		AddGameObject(new Static(new Vector2(4,4), 1, false, false, false),null);
@@ -91,8 +91,8 @@ public class GameHandler {
 		AddGameObject(new Static(new Vector2(4,6), 1, false, false, false),null);
 		
 		// Hard coded game setup
-		AddGameObject(new Infantry(new Vector2(9,i), 10, true, 0.01f, 1.0),players[1]);
-		AddGameObject(new Infantry(new Vector2(8,i), 10, true, 0.01f, 1.0),players[1]);
+		AddGameObject(new Infantry(new Vector2(9,i), 100, true, 0.01f, 1.0),players[1]);
+		AddGameObject(new Infantry(new Vector2(8,i), 100, true, 0.01f, 1.0),players[1]);
 		}
 		// Add static objects public Static(Vector2 pos, double hp, boolean passAble, boolean canBeOccupied)
 		// AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
@@ -155,7 +155,9 @@ public class GameHandler {
 				for(GameObject gameobj : handle.stateArray[i][j].gameobject){
 					gameobj.pos.x = Math.max(0, Math.min(gameobj.pos.x, handle.stateArray.length -1 + 0.4f));
 					gameobj.pos.y = Math.max(0, Math.min(gameobj.pos.y, handle.stateArray[0].length -1 + 0.4f));
-					if(new Vector2(gameobj.getXTile(),gameobj.getYTile()) != new Vector2(i,j)){
+					int xtile = gameobj.getXTile();
+					int ytile = gameobj.getYTile();
+					if(new Vector2(xtile,ytile) != new Vector2(i,j)){
 						toChange.add(gameobj);
 						
 					}
