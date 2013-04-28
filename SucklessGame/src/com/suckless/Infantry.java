@@ -23,10 +23,12 @@ public class Infantry extends MoveAble {
 	private void DealDamage(List<GameObject> objlist){
 		GameObject gameobj = objlist.get(rn.nextInt(objlist.size()));
 		gameobj.hp = gameobj.hp-damage;
+		this.attacking = gameobj.owner;
 	}
 	
 	public void FindInteraction(Field[][] states){
 		// Attack close random object
+		this.attacking = null;
 		List<GameObject> objlist = new LinkedList<GameObject>();
 		for (int i = Math.max(this.getXTile()-(int)Math.ceil(range),0); i<Math.min(this.getXTile()+(int)Math.ceil(range)+1,states.length);i++){
 			for (int j = Math.max(this.getYTile()-(int)Math.ceil(range),0); j<Math.min(this.getYTile()+(int)Math.ceil(range)+1,states[0].length);j++){
