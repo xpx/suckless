@@ -46,7 +46,7 @@ public class GameScreen implements Screen, Player {
 			shader = new FlatColorShader();
 		}
 		t += delta;
-		gl.glClearColor(1.0f, (float)Math.sin(t) * 0.5f + 0.5f, 0.0f, 1.0f);
+		gl.glClearColor(1.0f/2.0f, (float)Math.sin(t) * 0.5f/2.0f + 0.5f/2.0f, 0.0f, 1.0f);
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		RenderState rendState = new RenderState();
 		rendState.sprog = shader;

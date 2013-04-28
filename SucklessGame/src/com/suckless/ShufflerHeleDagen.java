@@ -28,8 +28,6 @@ public class ShufflerHeleDagen extends Command {
 
 		List<GameObject> shuffleList = createGameObjectList(states, player);
 		selectedObject.selected = false;
-		System.out.print("shuffler\n");
-		
 		if(shuffleList.indexOf(selectedObject)+1 >= shuffleList.size()){
 			selectedObject = shuffleList.get(0);
 		}
