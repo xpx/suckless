@@ -27,14 +27,7 @@ public class AI implements Player{
 		cnt = 0;
 		inited = false; 
 		objects = new ArrayList<GameObject>();
-		
 
-/*				cnt += 1;
-				if(cnt >= nextTarget){
-					cnt = 0;
-					nextTarget = (rnd.nextInt(500)) / 10;
-					ink.Invoke();
-				}*/
 		new Timer().schedule(new TimerTask() { 
 			public void run()  { 
 				
@@ -62,7 +55,7 @@ public class AI implements Player{
 				}
 				}
 			}
-		}, 0, 100);
+		}, 0, 10);
 		
 	}
 	
