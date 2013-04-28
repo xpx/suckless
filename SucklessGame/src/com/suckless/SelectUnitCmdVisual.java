@@ -18,7 +18,7 @@ public class SelectUnitCmdVisual implements CommandVisual {
 		if(gdx.IsEs1){
 			gdx.getSquareMesh().render(GL10.GL_TRIANGLE_STRIP);
 		}else{
-			gdx.sprog.SetCurrentColor(Color.RED);
+			gdx.sprog.SetCurrentColor(Color.YELLOW);
 			gdx.sprog.SetObjectPosition(UnitLocation);
 			gdx.sprog.SetObjectSize(UnitSize);
 			gdx.getSquareMesh().render(gdx.sprog,GL20.GL_LINE_LOOP);

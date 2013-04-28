@@ -35,6 +35,8 @@ public class VisualFactory {
 		if(cmd instanceof Selecter){
 			Selecter slc = (Selecter) cmd;
 			return new SelectLocationCmdVisual(slc.x,slc.y);
+		}else if(cmd instanceof ShufflerHeleDagen){
+			return new SelectUnitCmdVisual(cmd.selectedObject.pos,new Vector2(1.0f,1.0f));
 		}
 		return new GenericCommandVisual();
 	}
