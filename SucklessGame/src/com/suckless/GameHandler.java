@@ -119,8 +119,7 @@ public class GameHandler {
 			Player ply = players[i];
 			Command obj = commandDict.get(ply);
 			if(obj != null){
-				System.out.println(obj);	
-				obj.Update(handle.stateArray, players[i]);
+				obj = obj.Update(handle.stateArray, players[i]);
 					
 			}
 			// aktiver shuffling

@@ -3,8 +3,8 @@ package com.suckless;
 import com.badlogic.gdx.math.Vector2;
 
 public class MoveCommand extends Selecter{
-	MoveCommand(GameObject inputObject, int x1, int y1) {
-		super(inputObject, x1, y1);
+	MoveCommand(GameObject inputObject, StateDirection dir) {
+		super(inputObject, dir);
 		// TODO Auto-generated constructor stub
 	}
 		

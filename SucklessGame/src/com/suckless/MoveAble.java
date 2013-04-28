@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.badlogic.gdx.math.Vector2;
+import com.suckless.Selecter.StateDirection;
 
 public class MoveAble extends GameObject {
 	
@@ -12,7 +13,9 @@ public class MoveAble extends GameObject {
 
 	public List<Command> GetAvailableCommands(){
 		LinkedList<Command> out = new LinkedList<Command>();
-		out.add(new MoveCommand(this,0,0));
+		
+		StateDirection dir = StateDirection.RIGHT;
+		out.add(new MoveCommand(this,dir));
 		out.addAll(super.GetAvailableCommands());
 		return out;
 	}

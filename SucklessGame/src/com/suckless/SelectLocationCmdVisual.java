@@ -28,7 +28,7 @@ public class SelectLocationCmdVisual implements CommandVisual {
 		}else{
 			gdx.sprog.SetCurrentColor(Color.CYAN);
 			gdx.sprog.SetObjectPosition(new Vector2(x,y));
-			gdx.sprog.SetObjectSize(new Vector2(0.05f,0.05f));
+			gdx.sprog.SetObjectSize(new Vector2(0.2f,0.2f));
 			gdx.getSquareMesh().render(gdx.sprog,GL20.GL_TRIANGLE_FAN);
 		}
 	}
