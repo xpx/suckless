@@ -18,18 +18,18 @@ public abstract class Selecter extends Command {
 		y = y1;
 	}
 	
-	public abstract void handleSelect();
+	public abstract void handleSelect(Field[][] states, Player player);
 	
 	@Override
-	public Command Select(){
+	public Command Select(Field[][] states, Player player){
 		switch(direction){
 		case LEFT:	direction = StateDirection.DOWN;
 			break;
 		case RIGHT:	direction = StateDirection.UP;
 			break;
-		case UP:	handleSelect();
+		case UP:	handleSelect(states, player);
 			break;
-		case DOWN:	handleSelect();
+		case DOWN:	handleSelect(states, player);
 			break;
 		default:
 			break;

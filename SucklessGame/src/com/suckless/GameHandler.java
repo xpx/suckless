@@ -50,11 +50,15 @@ public class GameHandler {
 			}
 		}
 		commandDict = new Hashtable<Player,Command>();
-		
 	}
+	
 	void onPlayerSelectEvent(Player player){
-		Command cmd = commandDict.get(player);
-		commandDict.put(player,cmd.Select());
+		Command cmd = commandDict.get(player).Select(handle.stateArray,player);
+		if(cmd == null){
+			ShufflerHeleDagen shd = new ShufflerHeleDagen(null);	
+			cmd = shd;
+		}
+		commandDict.put(player,cmd);
 	}
 	
 //	// Init g�gl
@@ -98,7 +102,6 @@ public class GameHandler {
 		{
 			Command obj = commandDict.get(players[i]).Update(handle.stateArray, players[i]);
 			// aktiver shuffling
-			
 			if(obj == null){
 				ShufflerHeleDagen shd = new ShufflerHeleDagen(null);	
 				obj = shd;
