@@ -7,11 +7,11 @@ public class Command {
 	}
 	
 	// Brugeren trykker enter
-	public Command Select(){
+	public Command Select(Field[][] states, Player player){
 		return new Command(selectedObject);
 	}
 	
 	public Command Update(Field[][] states, Player player){
 		return this;
-	}	
+	}
 }

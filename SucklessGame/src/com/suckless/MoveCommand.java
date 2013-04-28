@@ -6,12 +6,13 @@ public class MoveCommand extends Selecter{
 		// TODO Auto-generated constructor stub
 	}
 		
-	public void handleSelect(){
-		switch(direction){
-		case UP:	
-			break;
-		case DOWN:	
-			break;
-		}
+	public void handleSelect(Field[][] states, Player player){
+//		switch(direction){
+//		case UP:	// kender x og y - skal bruge det til at fortaelle objektet at det skal flekse noget
+//					if (states[x][y] 
+//			break;
+//		case DOWN:	
+//			break;
+//		}
 	}
 }
