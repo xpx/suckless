@@ -7,7 +7,7 @@ public abstract class Command {
 	}
 	
 	// Brugeren trykker enter
-	public abstract Command Select(Field[][] states, Player player);
+	public abstract void Select(Field[][] states, Player player);
 	
 	public abstract Command Update(Field[][] states, Player player);
 }

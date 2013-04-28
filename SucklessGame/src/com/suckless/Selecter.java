@@ -19,25 +19,27 @@ public abstract class Selecter extends Command {
 	}
 	
 	public abstract Command handleSelect(GameObject inputObject);
-	
+	boolean stop = false;
 	@Override
-	public Command Select(Field[][] states, Player player){
+	public void Select(Field[][] states, Player player){
 		switch(direction){
 		case LEFT:	direction = StateDirection.DOWN;
 			break;
 		case RIGHT:	direction = StateDirection.UP;
 			break;
-		case UP:	return handleSelect(selectedObject);
-		case DOWN:	return handleSelect(selectedObject);
+		case UP:	stop = true;
+		case DOWN:	stop = true;
 		default:
 			break;
 		}
-		return this;
 	}
 	
 		@Override
 	public Command Update(Field[][] states, Player player){
-			System.out.println(String.format("%d %d", x,y));
+			if(stop){
+				return handleSelect(selectedObject);
+			}
+			
 			maxX = states.length;
 			maxY = states[0].length;
 			if(first){

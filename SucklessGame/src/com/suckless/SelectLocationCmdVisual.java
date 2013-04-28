@@ -15,10 +15,10 @@ public class SelectLocationCmdVisual implements CommandVisual {
 	
 	@Override
 	public void Draw(RenderState gdx) {
-		for(int i = 0 ; i < cellX; i++){
+		for(int i = 0 ; i <= cellX; i++){
 			drawAt(gdx,i,0);
 		}
-		for(int i = 0; i < cellY;i++){
+		for(int i = 0; i <= cellY;i++){
 			drawAt(gdx,cellX,i);
 		}
 	}

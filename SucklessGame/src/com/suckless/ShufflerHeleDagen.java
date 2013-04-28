@@ -37,21 +37,24 @@ public class ShufflerHeleDagen extends Command {
 		selectedObject.selected = true;
 		return this;
 	}
-
+	boolean stop = false;
 
 	@Override
-	public Command Select(Field[][] states, Player player) {
-		List<Command> availCmd = this.selectedObject.GetAvailableCommands();
-		if(availCmd.isEmpty()){
-			return null;
-		}
-		return availCmd.get(0);
+	public void Select(Field[][] states, Player player) {
+		stop = true;
 	}
 
 
 
 	@Override
 	public Command Update(Field[][] states, Player player) {
+		if(stop){
+			List<Command> availCmd = this.selectedObject.GetAvailableCommands();
+			if(availCmd.isEmpty()){
+				return null;
+			}
+			return availCmd.get(0);
+		}
 		return MegaHand(states, player);
 	}
 }

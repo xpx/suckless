@@ -1,5 +1,6 @@
 package com.suckless;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -94,18 +95,9 @@ public class GameHandler {
 	void onPlayerSelectEvent(Player player){
 		Command cmd = commandDict.get(player);
 		if(cmd != null ){
-			cmd = cmd.Select(handle.stateArray,player);
+			cmd.Select(handle.stateArray,player);
 		}
-		if(cmd == null){
-			List<GameObject> go = new GameState(handle.stateArray).GetAllGameObjects();
-			for(GameObject go2 : go){
-				if(go2.owner == player){
-					ShufflerHeleDagen shd = new ShufflerHeleDagen(go2);	
-					cmd = shd;
-				}
-			}
-		}
-		commandDict.put(player,cmd);
+		
 	}
 	
 //	// Init g�gl
@@ -151,6 +143,10 @@ public class GameHandler {
 			Command obj = commandDict.get(ply);
 			if(obj != null){
 				obj = obj.Update(handle.stateArray, players[i]);
+				if(obj != null){
+					commandDict.put(players[i],obj);
+					players[i].CommandChanged(commandDict.get(players[i]));
+				}
 					
 			}
 			
@@ -160,13 +156,14 @@ public class GameHandler {
 				for(GameObject go2 : go){
 					if(go2.owner == players[i]){
 						ShufflerHeleDagen shd = new ShufflerHeleDagen(go2);	
+						commandDict.put(players[i],shd);
+						players[i].CommandChanged(commandDict.get(players[i]));
 						obj = shd;
 						break;
 					}
 				}
 			}
-			commandDict.put(players[i],obj);
-			players[i].CommandChanged(commandDict.get(players[i]));
+			
 		}
 	}
 	

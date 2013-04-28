@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 public class InfantryVisual extends GameObjectVisual {
 
 	public InfantryVisual(Vector2 location) {
-		super(location, new Vector2(0.4f,0.4f));
+		super(location, new Vector2(0.2f,0.2f));
 		
 	}
 	@Override

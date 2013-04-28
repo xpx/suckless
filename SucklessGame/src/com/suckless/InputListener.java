@@ -1,5 +1,7 @@
 package com.suckless;
 
+import java.util.Calendar;
+
 import com.badlogic.gdx.InputProcessor;
 /*
  * Class that listens to inputs from keyboard and touch screen
@@ -14,7 +16,7 @@ public class InputListener implements InputProcessor{
 	
 	@Override
 	public boolean keyDown(int keycode) {
-		// TODO Auto-generated method stub
+		
 		ActionEvent.Invoke();
 		return false;
 	}

@@ -23,7 +23,7 @@ public class AI implements Player{
 				if(cnt >= nextTarget){
 					cnt = 0;
 					nextTarget = (rnd.nextInt(3000)) / 10;
-					ink.Invoke();
+					//ink.Invoke();
 				}
 			}
 		}, 0, 10);
@@ -44,7 +44,6 @@ public class AI implements Player{
 
 	@Override
 	public void CommandChanged(Command command) {
-		// TODO Auto-generated method stub
 		
 	}
 
