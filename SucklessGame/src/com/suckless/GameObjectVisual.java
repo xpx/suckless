@@ -30,9 +30,13 @@ public class GameObjectVisual implements GameVisual{
 	public Color ObjectColor;
 	public double hpRel;
 	
-	public GameObjectVisual(GameObject go,Vector2 size){
+	public void Update(GameObject go){
 		hpRel = go.hp / go.MaxHp;
 		Loc = go.pos;
+	}
+	
+	public GameObjectVisual(GameObject go,Vector2 size){
+		
 		Size = size;
 		ObjectColor = Color.WHITE;
 	}

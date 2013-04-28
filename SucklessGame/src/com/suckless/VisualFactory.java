@@ -26,11 +26,11 @@ public class VisualFactory {
 	
 	public GameObjectVisual GetVisual(GameObject go){
 		
-		GameObjectVisual gov = null;//visualLut.get(go);
+		GameObjectVisual gov = visualLut.get(go);
 		if(gov == null){
 			
 			gov = makeGameObjectVisual(go);
-			visualLut.put(go, gov);
+			
 			if(go.owner == player){
 				gov.unitstate = GameObjectVisual.UnitState.PLAYER;
 			}else if(go.owner == null){
@@ -38,8 +38,10 @@ public class VisualFactory {
 			}else{
 				gov.unitstate = GameObjectVisual.UnitState.ENEMY;
 			}
+			visualLut.put(go, gov);
 			
 		}
+		gov.Update(go);
 		
 		return gov;
 	}

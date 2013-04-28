@@ -23,7 +23,7 @@ public class Infantry extends MoveAble {
 	private void DealDamage(List<GameObject> objlist){
 		GameObject gameobj = objlist.get(rn.nextInt(objlist.size()));
 		gameobj.hp = gameobj.hp-damage;
-		this.attacking = gameobj.owner;
+		this.attacking = gameobj;
 	}
 	
 	public void FindInteraction(Field[][] states){

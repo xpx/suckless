@@ -10,12 +10,24 @@ public class InfantryVisual extends GameObjectVisual {
 	Vector2 targetLoc;
 	GameObject LastAttack;
 	float range;
+	
+	@Override
+	public void Update(GameObject go){
+		super.Update(go);
+		Infantry inf = (Infantry) go;
+		hpRel = go.hp / go.MaxHp;
+		Loc = go.pos;
+		LastAttack = inf.attacking;
+		range = (float) inf.range;
+		targetLoc = inf.target;
+	}
+	
 	public InfantryVisual(Infantry infantryObject) {
 		super(infantryObject,new Vector2(0.2f,0.2f));
-		range = (float) infantryObject.range;
-		targetLoc = infantryObject.target;
+		
 		
 	}
+	int it = 0;
 	@Override
 	public void Draw(RenderState gdx) {
 		ObjectColor = GetPlayerColor(unitstate);
@@ -31,11 +43,11 @@ public class InfantryVisual extends GameObjectVisual {
 			gdx.sprog.SetObjectSize(new Vector2(range,range));
 			gdx.getUnitCircle().render(gdx.sprog,GL20.GL_LINE_LOOP);
 			
-			if(LastAttack != null){
+			if(LastAttack != null && ((it++ % 5) == 0)){
 				gdx.sprog.SetCurrentColor(Color.ORANGE);
 				gdx.sprog.SetObjectPosition(Loc);
-				gdx.sprog.SetObjectSize(Loc.cpy().sub(LastAttack.pos));
-				gdx.getUnitCircle().render(gdx.sprog,GL20.GL_LINE_LOOP);
+				gdx.sprog.SetObjectSize(LastAttack.pos.cpy().sub(Loc));
+				unitLine.render(gdx.sprog,GL20.GL_LINE_LOOP);
 			}
 			DrawHealthBar(gdx,Loc);
 			
