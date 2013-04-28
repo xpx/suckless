@@ -36,7 +36,7 @@ public abstract class Selecter extends Command {
 	int it = 0;
 		@Override
 	public Command Update(Field[][] states, Player player){
-			if(it++ % 3 == 1){
+			if(it++ % 2 == 1){
 				return this;
 			}
 			if(stop){
