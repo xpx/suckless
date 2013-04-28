@@ -141,8 +141,23 @@ public class GameHandler {
 		}
 
 		for(GameObject gameobj : new GameState(handle.stateArray).GetAllGameObjects()){
+			System.out.print("\n hp:" + gameobj.hp);
 			if(gameobj.hp <= 0){
 				handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.remove(gameobj);				
+			}
+		}
+		updateAllObjectsToCells();
+	}
+	
+	public void updateAllObjectsToCells(){
+		for(int i = 0; i<handle.stateArray.length; i++){
+			for(int j = 0; j<handle.stateArray[0].length; j++){
+				for(GameObject gameobj : handle.stateArray[i][j].gameobject){
+					if(new Vector2(gameobj.getXTile(),gameobj.getYTile()) != new Vector2(i,j)){
+						handle.stateArray[i][j].gameobject.remove(gameobj);
+						handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.add(gameobj);
+					}
+				}
 			}
 		}
 	}
