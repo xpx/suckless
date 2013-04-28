@@ -62,7 +62,7 @@ public class AI implements Player{
 				}
 				}
 			}
-		}, 0, 2000);
+		}, 0, 100);
 		
 	}
 	
