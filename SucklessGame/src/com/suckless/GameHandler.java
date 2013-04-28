@@ -50,7 +50,7 @@ public class GameHandler {
 	GameHandler(Player[] players1,int sizeX,int sizeY){
 		xSquares = sizeX;
 		ySquares = sizeY;
-		handle = new StateHandler(10,10);
+		handle = new StateHandler(sizeX,sizeY);
 		playerEventHandlers = new LinkedList<playerEventHandler>();
 		players = players1;
 		Random rnd = new Random();
@@ -61,9 +61,38 @@ public class GameHandler {
 			if(evt != null){
 				evt.AddListener(pListener);
 			}
-			AddGameObject(new Infantry(new Vector2(rnd.nextFloat(),rnd.nextFloat()), 10, 0.0f, 1.0),ply);
+			// AddGameObject(new Infantry(new Vector2(rnd.nextFloat(),rnd.nextFloat()), 10, 0.0f, 1.0),ply);
 		}
+		
+
+		scenarioHardCode();
+		
+		
+		
 		commandDict = new Hashtable<Player,Command>();
+	}
+	
+	private void scenarioHardCode()
+	{
+		// Virker til 10x10
+		for(Field[] states : handle.stateArray){
+			for(Field felt : states){
+				felt.actualField = new FieldType("grass",0);
+			}
+		}
+		
+		// Hard coded game setup
+		AddGameObject(new Infantry(new Vector2(1,1), 10, 0.0f, 1.0),players[0]);
+		AddGameObject(new Tank(new Vector2(1,5), 10, 0.0f, 1.0,1),players[0]);
+		AddGameObject(new Infantry(new Vector2(2,8), 10, 0.0f, 1.0),players[0]);
+		
+		// Hard coded game setup
+		AddGameObject(new Infantry(new Vector2(9,1), 10, 0.0f, 1.0),players[1]);
+		AddGameObject(new Infantry(new Vector2(9,3), 10, 0.0f, 1.0),players[1]);
+		AddGameObject(new Tank(new Vector2(7,6), 10, 0.0f, 1.0,1),players[1]);
+		
+		// Add static objects public Static(Vector2 pos, double hp, boolean passAble, boolean canBeOccupied)
+		AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
 	}
 	
 	void onPlayerSelectEvent(Player player){
