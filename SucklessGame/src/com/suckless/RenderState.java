@@ -17,6 +17,39 @@ static protected Mesh squareMesh;
 		}
 		return squareMesh;
 	}
+	
+	Mesh unitLine;
+	
+	public Mesh getUnitLine(){
+		if(unitLine == null){
+			unitLine = new Mesh(true,2*2,2,new VertexAttribute(0,2,"vertex_position"));
+			unitLine.setVertices(new float[]{0.0f,.0f,1.0f,1.0f});
+			unitLine.setIndices(new short[]{0,1,});
+		}
+		return unitLine;
+	}
+	
+	Mesh circleShape;
+	public Mesh getUnitCircle(){
+		if(circleShape == null){
+			float[] circleData = new float[512];
+			short[] indices = new short[256];
+			for(int i = 0;i < 256;i += 2){
+				indices[i/2] = (short) (i / 2);
+				float phase = (float)i / 256.0f * 2 *(float)Math.PI; 
+				float x = (float) Math.sin(phase);
+				float y = (float) Math.cos(phase);
+				circleData[i] = x;
+				circleData[i+1] = y;
+				
+			}
+			circleShape = new Mesh(true,2*256,256,new VertexAttribute(0,2,"vertex_position"));
+			circleShape.setVertices(circleData);
+			circleShape.setIndices(indices);
+		}
+		return circleShape;
+	}
+	
 	public boolean IsEs1 = false;
 	public FlatColorShader sprog;
 	Vector2 CurrentCameraPosition;

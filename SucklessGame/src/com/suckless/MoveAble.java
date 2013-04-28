@@ -37,15 +37,7 @@ public class MoveAble extends GameObject {
 	public void Move() {
 		
 		Vector2 tmp;
-		if(moving){
-			
-			float restX =  Math.round(target.x);
-			target.x = restX + (rnd.nextFloat() - 0.5f)*jitter;
-			float restY =  Math.round(target.y);
-			target.y = restY + (rnd.nextFloat() - 0.5f)*jitter;
-			
-			
-		}
+		
 		// Check if object not at target
 		if(this.pos.cpy().dst(this.target) != 0.0) {
 			
@@ -55,6 +47,13 @@ public class MoveAble extends GameObject {
 				this.pos = target;
 				moving = false;
 			} else {
+				if(!moving){
+					
+					float restX =  Math.round(target.x);
+					target.x = restX + (rnd.nextFloat() - 0.5f)*jitter;
+					float restY =  Math.round(target.y);
+					target.y = restY + (rnd.nextFloat() - 0.5f)*jitter;
+				}
 				moving = true;
 				// Calculate and update position new position
 				// TODO check is we are to add or sub distance
