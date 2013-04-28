@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Infantry extends MoveAble {
 	
 	public double damage;
-	public int range = 1;
+	public double range = 0.5;
 	Random rn;
 	
 	public Infantry(Vector2 pos, double hp, float speed, double damage) {
@@ -28,8 +28,8 @@ public class Infantry extends MoveAble {
 	public void FindInteraction(Field[][] states){
 		// Attack close random object
 		List<GameObject> objlist = new LinkedList<GameObject>();
-		for (int i = Math.max(this.getXTile()-range,0); i<Math.min(this.getXTile()+range+1,states.length);i++){
-			for (int j = Math.max(this.getYTile()-range,0); j<Math.min(this.getYTile()+range+1,states[0].length);j++){
+		for (int i = Math.max(this.getXTile()-(int)Math.ceil(range),0); i<Math.min(this.getXTile()+(int)Math.ceil(range)+1,states.length);i++){
+			for (int j = Math.max(this.getYTile()-(int)Math.ceil(range),0); j<Math.min(this.getYTile()+(int)Math.ceil(range)+1,states[0].length);j++){
 				if (states[i][j].gameobject.isEmpty() == false)
 				{
 					for(GameObject gameobj : states[i][j].gameobject){
@@ -52,7 +52,7 @@ public class Infantry extends MoveAble {
 	private boolean withinCirle(GameObject target)
 	{
 		double distance = Math.sqrt(Math.pow(this.pos.x-target.pos.x, 2)+Math.pow(this.pos.y-target.pos.y, 2));
-		if(distance < (double)range){
+		if(distance < range){
 			return true;
 		}
 		else{

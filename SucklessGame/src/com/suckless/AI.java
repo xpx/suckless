@@ -31,14 +31,14 @@ public class AI implements Player{
 		
 		new Timer().schedule(new TimerTask() { 
 			public void run()  { 
-/*				cnt += 1;
+				cnt += 1;
 				if(cnt >= nextTarget){
 					cnt = 0;
 					nextTarget = (rnd.nextInt(500)) / 10;
 					ink.Invoke();
-				}*/
+				}
 				
-				if (!inited) {
+/*				if (!inited) {
 					objects = GetOwnObjects(stateArray);
 					if (objects != null)
 						inited = true;
@@ -60,9 +60,9 @@ public class AI implements Player{
 						}
 					}
 				}
-				}
+				}*/
 			}
-		}, 0, 100);
+		}, 0, 10);
 		
 	}
 	
