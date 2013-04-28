@@ -84,7 +84,6 @@ public class GameHandler {
 		for(float i = 2; i < 4;i++){
 		AddGameObject(new Infantry(new Vector2(1,i), 10, 0.01f, 1.0),players[0]);
 		AddGameObject(new Infantry(new Vector2(2,i), 10, 0.01f, 1.0),players[0]);
-		AddGameObject(new Static(new Vector2(3,5), 10000, false, false),null);
 		
 		// Hard coded game setup
 		AddGameObject(new Infantry(new Vector2(9,i), 10, 0.01f, 1.0),players[1]);

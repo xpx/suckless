@@ -34,7 +34,7 @@ public class MoveAble extends GameObject {
 	/**
 	 * Updates objects position
 	 */
-	public void Move() {
+	public void Move(Field[][] states) {
 		
 		Vector2 tmp;
 		if(moving){
@@ -59,16 +59,15 @@ public class MoveAble extends GameObject {
 				// Calculate and update position new position
 				// TODO check is we are to add or sub distance
 				if (pos.x < target.x){
-					this.pos.x = this.pos.x + TickControl.gameSpeed*this.speed;
+					this.pos.x = this.pos.x + TickControl.gameSpeed*this.speed*(Math.abs(this.pos.x-target.x)/tmp.len());					
 				} else {
-					this.pos.x = this.pos.x - TickControl.gameSpeed*this.speed;
+					this.pos.x = this.pos.x - TickControl.gameSpeed*this.speed*(Math.abs(this.pos.x-target.x)/tmp.len());
 				}
 				if (pos.y < target.y){
-					this.pos.y = this.pos.y + TickControl.gameSpeed*this.speed;
+					this.pos.y = this.pos.y + TickControl.gameSpeed*this.speed*(Math.abs(this.pos.y-target.y)/tmp.len());
 				} else {
-					this.pos.y = this.pos.y - TickControl.gameSpeed*this.speed;
+					this.pos.y = this.pos.y - TickControl.gameSpeed*this.speed*(Math.abs(this.pos.y-target.y)/tmp.len());
 				}
-				
 			}
 			
 		}
@@ -76,7 +75,7 @@ public class MoveAble extends GameObject {
 
 	@Override
 	public void Update(Field[][] states) {
-		Move();
+		Move(states);
 	}
 
 }
