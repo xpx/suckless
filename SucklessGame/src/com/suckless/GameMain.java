@@ -8,7 +8,7 @@ public class GameMain extends Game {
 	@Override
 	public void create() {
 		GameScreen gs = new GameScreen();
-		TickControl.startTickControl(new GameHandler(new Player[]{gs, new AI()}));
+		TickControl.startTickControl(new GameHandler(new Player[]{gs, new AI()},10,10));
 		setScreen(gs);
 		
 		

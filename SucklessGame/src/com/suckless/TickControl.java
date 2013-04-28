@@ -10,7 +10,7 @@ public class TickControl {
 	
 	public static float gameSpeed = 100;
 	public static long tickSize = 100;
-	public static long updateSelector = 500;
+	public static long updateSelector = 200;
 	
 	public static void startTickControl(final GameHandler gameHandling){
 		new Timer().schedule(new TimerTask() { 

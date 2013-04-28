@@ -12,8 +12,8 @@ import com.badlogic.gdx.math.Vector2;
 public class GameHandler {
 	
 	// St�rrelsen p� arrayet
-	public int xSquares = 10;
-	public int ySquares = 10;
+	public int xSquares;
+	public int ySquares;
 	public StateHandler handle;
 	public GameObject[] player1;
 	public GameObject[] player2;
@@ -46,7 +46,10 @@ public class GameHandler {
 	}
 	
 	List<playerEventHandler> playerEventHandlers;
-	GameHandler(Player[] players1){
+	
+	GameHandler(Player[] players1,int sizeX,int sizeY){
+		xSquares = sizeX;
+		ySquares = sizeY;
 		handle = new StateHandler(10,10);
 		playerEventHandlers = new LinkedList<playerEventHandler>();
 		players = players1;
