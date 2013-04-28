@@ -89,7 +89,7 @@ public class GameHandler {
 		AddGameObject(new Infantry(new Vector2(9,3), 10, 0.01f, 1.0),players[1]);
 		
 		// Add static objects public Static(Vector2 pos, double hp, boolean passAble, boolean canBeOccupied)
-		AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
+		// AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
 	}
 	
 	void onPlayerSelectEvent(Player player){
@@ -117,8 +117,9 @@ public class GameHandler {
 	// Handle functionen til at k�re the stuff
 	public void  Handle()
 	{
-		// update all gameobjects function
+		updateAllObjectsToCells();
 		
+		// update all gameobjects function
 		for(Field[] rows: handle.stateArray){
 			for(Field cell : rows){
 				for(GameObject go : cell.gameobject){
@@ -130,6 +131,27 @@ public class GameHandler {
 		for(int i = 0; i<players.length;i++)
 		{
 			players[i].getWorldData(handle.stateArray);
+		}
+
+		for(GameObject gameobj : new GameState(handle.stateArray).GetAllGameObjects()){
+			System.out.print("\n hp:" + gameobj.hp);
+			if(gameobj.hp <= 0){
+				handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.remove(gameobj);				
+			}
+		}
+
+	}
+	
+	public void updateAllObjectsToCells(){
+		for(int i = 0; i<handle.stateArray.length; i++){
+			for(int j = 0; j<handle.stateArray[0].length; j++){
+				for(GameObject gameobj : handle.stateArray[i][j].gameobject){
+					if(new Vector2(gameobj.getXTile(),gameobj.getYTile()) != new Vector2(i,j)){
+						handle.stateArray[i][j].gameobject.remove(gameobj);
+						handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.add(gameobj);
+					}
+				}
+			}
 		}
 	}
 	
