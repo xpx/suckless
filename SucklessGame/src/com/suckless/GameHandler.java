@@ -88,7 +88,7 @@ public class GameHandler {
 		AddGameObject(new Infantry(new Vector2(9,3), 10, 0.01f, 1.0),players[1]);
 		
 		// Add static objects public Static(Vector2 pos, double hp, boolean passAble, boolean canBeOccupied)
-		AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
+		// AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
 	}
 	
 	void onPlayerSelectEvent(Player player){
@@ -138,6 +138,12 @@ public class GameHandler {
 		for(int i = 0; i<players.length;i++)
 		{
 			players[i].getWorldData(handle.stateArray);
+		}
+
+		for(GameObject gameobj : new GameState(handle.stateArray).GetAllGameObjects()){
+			if(gameobj.hp <= 0){
+				handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.remove(gameobj);				
+			}
 		}
 	}
 	
