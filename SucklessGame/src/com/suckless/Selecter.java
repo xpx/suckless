@@ -18,7 +18,7 @@ public abstract class Selecter extends Command {
 		y = y1;
 	}
 	
-	public abstract void handleSelect(Field[][] states, Player player);
+	public abstract Command handleSelect(GameObject inputObject);
 	
 	@Override
 	public Command Select(Field[][] states, Player player){
@@ -27,14 +27,12 @@ public abstract class Selecter extends Command {
 			break;
 		case RIGHT:	direction = StateDirection.UP;
 			break;
-		case UP:	handleSelect(states, player);
-			break;
-		case DOWN:	handleSelect(states, player);
-			break;
+		case UP:	return handleSelect(selectedObject);
+		case DOWN:	return handleSelect(selectedObject);
 		default:
 			break;
 		}
-		return null;
+		return this;
 	}
 	
 		@Override
