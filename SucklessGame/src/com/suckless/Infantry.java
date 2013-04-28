@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
-import com.example.test.GameObject;
 
 public class Infantry extends MoveAble {
 	
@@ -48,10 +47,12 @@ public class Infantry extends MoveAble {
 					for(GameObject gameobj : states[i][j].gameobject){
 						if (gameobj.owner != this.owner)
 						{
-							if (withinCirle(gameobj)){
-								objlist.add(gameobj);
+							if (gameobj.owner != null)
+							{
+								if (withinCirle(gameobj)){
+									objlist.add(gameobj);
+								}
 							}
-							
 						}
 					}
 				}
