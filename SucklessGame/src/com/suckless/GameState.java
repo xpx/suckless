@@ -6,8 +6,8 @@ import java.util.List;
 public class GameState {
 	public Field[][] stateArray;
 	
-	GameState(Field[][] stateArray){
-		
+	public GameState(Field[][] stateArray){
+		this.stateArray = stateArray;
 	}
 	
 	public List<GameObject> GetAllGameObjects(){

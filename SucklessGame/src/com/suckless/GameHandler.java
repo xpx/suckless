@@ -75,17 +75,15 @@ public class GameHandler {
 	public void  Handle()
 	{
 		// update all gameobjects function
-		for (int i=0; i < xSquares; i++)
-		{
-			for (int j=0; j < ySquares; j++)
-			{
-				if (handle.stateArray[i][j].gameobject != null){
-					for (int k=0; k<handle.stateArray[i][j].gameobject.length; k++){
-						handle.stateArray[i][j].gameobject[k].Update();
-					}
+		
+		for(Field[] rows: handle.stateArray){
+			for(Field cell : rows){
+				for(GameObject go : cell.gameobject){
+					go.Update();
 				}
 			}
 		}
+		
 		for(int i = 0; i<players.length;i++)
 		{
 			players[i].getWorldData(handle.stateArray);
