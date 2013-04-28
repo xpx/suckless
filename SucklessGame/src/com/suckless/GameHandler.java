@@ -155,6 +155,7 @@ public class GameHandler {
 				obj = obj.Update(handle.stateArray, players[i]);
 					
 			}
+			
 			// aktiver shuffling
 			if(obj == null){
 				List<GameObject> go = new GameState(handle.stateArray).GetAllGameObjects();
@@ -162,6 +163,7 @@ public class GameHandler {
 					if(go2.owner == players[i]){
 						ShufflerHeleDagen shd = new ShufflerHeleDagen(go2);	
 						obj = shd;
+						break;
 					}
 				}
 			}
