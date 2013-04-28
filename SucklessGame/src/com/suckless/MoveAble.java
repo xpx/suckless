@@ -40,7 +40,7 @@ public class MoveAble extends GameObject {
 		if(this.pos.dst(this.target) != 0.0) {
 			
 			// Check if object is closer to target than step distance
-			tmp = this.pos.div(target);
+			tmp = this.pos.cpy().sub(target);
 			if (tmp.len() < (TickControl.gameSpeed*this.speed)) {
 				this.pos = target;
 			} else {
@@ -56,6 +56,7 @@ public class MoveAble extends GameObject {
 				} else {
 					this.pos.y = this.pos.y - TickControl.gameSpeed*this.speed;
 				}
+				
 			}
 			
 		}

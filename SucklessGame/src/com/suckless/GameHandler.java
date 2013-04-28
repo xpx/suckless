@@ -61,15 +61,13 @@ public class GameHandler {
 			if(evt != null){
 				evt.AddListener(pListener);
 			}
-			// AddGameObject(new Infantry(new Vector2(rnd.nextFloat(),rnd.nextFloat()), 10, 0.0f, 1.0),ply);
+			//AddGameObject(new Infantry(new Vector2(rnd.nextFloat(),rnd.nextFloat()), 10, 0.001f, 1.0),ply);
 		}
 		
-
 		scenarioHardCode();
 		
-		
-		
 		commandDict = new Hashtable<Player,Command>();
+		
 	}
 	
 	private void scenarioHardCode()
@@ -82,14 +80,14 @@ public class GameHandler {
 		}
 		
 		// Hard coded game setup
-		AddGameObject(new Infantry(new Vector2(1,1), 10, 0.0f, 1.0),players[0]);
-		AddGameObject(new Tank(new Vector2(1,5), 10, 0.0f, 1.0,1),players[0]);
-		AddGameObject(new Infantry(new Vector2(2,8), 10, 0.0f, 1.0),players[0]);
+		AddGameObject(new Infantry(new Vector2(1,1), 10, 0.1f, 1.0),players[0]);
+		AddGameObject(new Tank(new Vector2(1,5), 10, 0.1f, 1.0,1),players[0]);
+		AddGameObject(new Infantry(new Vector2(2,8), 10, 0.1f, 1.0),players[0]);
 		
 		// Hard coded game setup
-		AddGameObject(new Infantry(new Vector2(9,1), 10, 0.0f, 1.0),players[1]);
-		AddGameObject(new Infantry(new Vector2(9,3), 10, 0.0f, 1.0),players[1]);
-		AddGameObject(new Tank(new Vector2(7,6), 10, 0.0f, 1.0,1),players[1]);
+		AddGameObject(new Infantry(new Vector2(9,1), 10, 0.1f, 1.0),players[1]);
+		AddGameObject(new Infantry(new Vector2(9,3), 10, 0.1f, 1.0),players[1]);
+		AddGameObject(new Tank(new Vector2(7,6), 10, 0.1f, 1.0,1),players[1]);
 		
 		// Add static objects public Static(Vector2 pos, double hp, boolean passAble, boolean canBeOccupied)
 		AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
