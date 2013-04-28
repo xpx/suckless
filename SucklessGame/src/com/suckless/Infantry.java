@@ -1,25 +1,33 @@
 package com.suckless;
 
+
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Random;
+
 import com.badlogic.gdx.math.Vector2;
 
 public class Infantry extends MoveAble {
 	
 	public double damage;
 	public int range = 1;
-
+	Random rn;
+	
 	public Infantry(Vector2 pos, double hp, float speed, double damage) {
 		super(pos, hp, speed);
+		rn = new Random();
 		
 		this.damage = damage;
 	}
 	
-	private void DealDamage(GameObject gameobj){
+	private void DealDamage(List<GameObject> objlist){
+		GameObject gameobj = objlist.get(rn.nextInt(objlist.size()));
 		gameobj.hp = gameobj.hp-damage;
-		//System.out.print("Game HP: " + gameobj.hp + "\n");
 	}
 	
 	public void FindInteraction(Field[][] states){
 		// Attack close random object
+		List<GameObject> objlist = new LinkedList<GameObject>();
 		for (int i = Math.max(this.getXTile()-range,0); i<Math.min(this.getXTile()+range+1,states.length);i++){
 			for (int j = Math.max(this.getYTile()-range,0); j<Math.min(this.getYTile()+range+1,states[0].length);j++){
 				if (states[i][j].gameobject.isEmpty() == false)
@@ -27,12 +35,28 @@ public class Infantry extends MoveAble {
 					for(GameObject gameobj : states[i][j].gameobject){
 						if (gameobj.owner != this.owner)
 						{
-							DealDamage(gameobj);
-							return;
+							if (withinCirle(gameobj)){
+								objlist.add(gameobj);
+							}
+							
 						}
 					}
 				}
 			}
+		}
+		if (objlist.isEmpty() == false){
+			DealDamage(objlist);
+		}
+	}
+	
+	private boolean withinCirle(GameObject target)
+	{
+		double distance = Math.sqrt(Math.pow(this.pos.x-target.pos.x, 2)+Math.pow(this.pos.y-target.pos.y, 2));
+		if(distance < (double)range){
+			return true;
+		}
+		else{
+			return false;
 		}
 	}
 	
