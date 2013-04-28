@@ -32,14 +32,16 @@ public class ShufflerHeleDagen extends Command {
 		}
 		
 		List<GameObject> shuffleList = createGameObjectList(states, player);
-		selectedObject.selected = false;
-		if(shuffleList.indexOf(selectedObject)+1 >= shuffleList.size()){
-			selectedObject = shuffleList.get(0);
+		if(shuffleList.isEmpty() == false){
+			selectedObject.selected = false;
+			if(shuffleList.indexOf(selectedObject)+1 >= shuffleList.size()){
+				selectedObject = shuffleList.get(0);
+			}
+			else{
+				selectedObject = shuffleList.get(shuffleList.indexOf(selectedObject)+1);
+			}
+			selectedObject.selected = true;
 		}
-		else{
-			selectedObject = shuffleList.get(shuffleList.indexOf(selectedObject)+1);
-		}
-		selectedObject.selected = true;
 		return this;
 	}
 	boolean stop = false;
