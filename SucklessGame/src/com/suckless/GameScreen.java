@@ -18,7 +18,6 @@ public class GameScreen implements Screen, Player {
 	List<GameVisual> visuals;
 	InputListener mainInputListener;
 	FlatColorShader shader;
-	OrthographicCamera cam;
 	GameHandler gameHandler;
 	EventBase keyPressInvoke;
 	Command CurrentCommand;
@@ -52,10 +51,12 @@ public class GameScreen implements Screen, Player {
 		RenderState rendState = new RenderState();
 		rendState.sprog = shader;
 		rendState.IsEs1 = false;
-		rendState.Camera = cam;
+		rendState.Zoom = 1.0f / 10f;
+		rendState.LookAt(new Vector2(5.0f,5.0f));
 		shader.begin();
 		shader.SetObjectSize(new Vector2(1,1));
-		shader.SetCameraPosition(new Vector2(0,0),0.05f);
+		shader.SetCameraPosition(rendState.CurrentCameraPosition,rendState.Zoom * 2f);
+		
 		List<GameVisual> visuals = new LinkedList<GameVisual>();
 	
 		if(CurrentCommand != null){

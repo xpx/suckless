@@ -94,7 +94,10 @@ public class GameHandler {
 	}
 	
 	void onPlayerSelectEvent(Player player){
-		Command cmd = commandDict.get(player).Select(handle.stateArray,player);
+		Command cmd = commandDict.get(player);
+		if(cmd != null ){
+			cmd = cmd.Select(handle.stateArray,player);
+		}
 		if(cmd == null){
 			List<GameObject> go = new GameState(handle.stateArray).GetAllGameObjects();
 			for(GameObject go2 : go){

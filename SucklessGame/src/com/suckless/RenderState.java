@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Vector2;
 
 public class RenderState {
 static protected Mesh squareMesh;
@@ -18,5 +19,25 @@ static protected Mesh squareMesh;
 	}
 	public boolean IsEs1 = false;
 	public FlatColorShader sprog;
-	public OrthographicCamera Camera;
+	Vector2 CurrentCameraPosition;
+	
+	public RenderState(){
+		CurrentCameraPosition = new Vector2(0.0f,0.0f);
+		Zoom = 1.0f;
+	}
+	
+	public float Zoom;
+	
+	
+	
+	public void SetZoom(float amount){
+		Vector2 currentLookPos = CurrentCameraPosition.cpy();
+		Zoom = amount;
+		LookAt(currentLookPos);
+	}
+	
+	public void LookAt(Vector2 position){
+		CurrentCameraPosition = position.cpy();
+	}
+	
 }
