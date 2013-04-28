@@ -17,6 +17,9 @@ public abstract class GameObject {
 	// Is the object selected
 	boolean selected;
 	
+	// Should it be possible to kill
+	public boolean destroyable;
+	
 	// Position
 	public Vector2 pos;
 	
@@ -30,10 +33,14 @@ public abstract class GameObject {
 	// HP
 	public double hp;
 	
-	public GameObject(Vector2 pos, double hp) {
+	public GameObject(Vector2 pos, double hp, boolean destroyable) {
 		this.pos = pos;
 		this.hp = hp;
+
+		this.destroyable = destroyable;
+
 		MaxHp = hp;
+
 	}
 	
 	/**
