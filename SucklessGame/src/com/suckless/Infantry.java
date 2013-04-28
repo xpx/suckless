@@ -13,8 +13,8 @@ public class Infantry extends MoveAble {
 	public double range = 2;
 	Random rn;
 	
-	public Infantry(Vector2 pos, double hp, float speed, double damage) {
-		super(pos, hp, speed);
+	public Infantry(Vector2 pos, double hp, boolean destroyable, float speed, double damage) {
+		super(pos, hp,  destroyable,speed);
 		rn = new Random();
 		
 		this.damage = damage;
@@ -37,8 +37,11 @@ public class Infantry extends MoveAble {
 					for(GameObject gameobj : states[i][j].gameobject){
 						if (gameobj.owner != this.owner)
 						{
-							if (withinCirle(gameobj)){
-								objlist.add(gameobj);
+							if (gameobj.owner != null)
+							{
+								if (withinCirle(gameobj)){
+									objlist.add(gameobj);
+								}
 							}
 							
 						}
@@ -51,9 +54,13 @@ public class Infantry extends MoveAble {
 		}
 	}
 	
+	private double getDistance(GameObject target){
+		return Math.sqrt(Math.pow(this.pos.x-target.pos.x, 2)+Math.pow(this.pos.y-target.pos.y, 2));
+	}
+	
 	private boolean withinCirle(GameObject target)
 	{
-		double distance = Math.sqrt(Math.pow(this.pos.x-target.pos.x, 2)+Math.pow(this.pos.y-target.pos.y, 2));
+		double distance = getDistance(target);
 		if(distance < range){
 			return true;
 		}

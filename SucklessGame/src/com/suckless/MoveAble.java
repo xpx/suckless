@@ -21,8 +21,8 @@ public class MoveAble extends GameObject {
 		return out;
 	}
 	
-	public MoveAble(Vector2 pos, double hp, float speed) {
-		super(pos, hp);
+	public MoveAble(Vector2 pos, double hp, boolean destroyable, float speed) {
+		super(pos, hp, destroyable);
 		// TODO Auto-generated constructor stub
 		this.speed = speed;
 		this.target = pos;
