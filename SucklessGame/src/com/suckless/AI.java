@@ -53,7 +53,7 @@ public class AI implements Player{
 										cnt++;
 								if (go.selected)
 									ink.Invoke();
-								System.out.printf("Ai obj %d, at pos: %f,%f\n", System.identityHashCode(go), go.pos.x, go.pos.y);
+								//System.out.printf("Ai obj %d, at pos: %f,%f\n", System.identityHashCode(go), go.pos.x, go.pos.y);
 								}
 							}
 								

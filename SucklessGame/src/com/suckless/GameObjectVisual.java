@@ -48,6 +48,7 @@ public class GameObjectVisual implements GameVisual{
 			gdx.sprog.SetObjectPosition(Loc);
 			gdx.sprog.SetObjectSize(Size);
 			gdx.getSquareMesh().render(gdx.sprog,GL20.GL_TRIANGLE_FAN);
+			
 		}
 		
 	}
