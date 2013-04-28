@@ -6,11 +6,13 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
+import com.example.test.GameObject;
 
 public class Infantry extends MoveAble {
 	
 	public double damage;
 	public double range = 2;
+	public GameObject attacking;
 	Random rn;
 	
 	public Infantry(Vector2 pos, double hp, float speed, double damage) {
@@ -21,9 +23,18 @@ public class Infantry extends MoveAble {
 	}
 	
 	private void DealDamage(List<GameObject> objlist){
-		GameObject gameobj = objlist.get(rn.nextInt(objlist.size()));
-		gameobj.hp = gameobj.hp-damage;
-		this.attacking = gameobj.owner;
+		GameObject selected = null;
+		double distance = range+1;
+		double temp;
+		for(GameObject gameobj : objlist){
+			temp = getDistance(gameobj);
+			if(temp < distance){
+				distance = temp;
+				selected = gameobj;
+			}
+		}
+		selected.hp = selected.hp-damage;
+		this.attacking = selected;
 	}
 	
 	public void FindInteraction(Field[][] states){
@@ -51,9 +62,13 @@ public class Infantry extends MoveAble {
 		}
 	}
 	
+	private double getDistance(GameObject target){
+		return Math.sqrt(Math.pow(this.pos.x-target.pos.x, 2)+Math.pow(this.pos.y-target.pos.y, 2));
+	}
+	
 	private boolean withinCirle(GameObject target)
 	{
-		double distance = Math.sqrt(Math.pow(this.pos.x-target.pos.x, 2)+Math.pow(this.pos.y-target.pos.y, 2));
+		double distance = getDistance(target);
 		if(distance < range){
 			return true;
 		}
