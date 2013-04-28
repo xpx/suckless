@@ -14,7 +14,7 @@ public class ShufflerHeleDagen extends Command {
 				{
 					player = gameobj.owner;
 					if(player != null){
-						 return 
+						 return null;
 					}
 				}
 			}
