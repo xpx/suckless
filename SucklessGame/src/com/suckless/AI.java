@@ -20,6 +20,10 @@ public class AI implements Player{
 	boolean inited;
 	List<GameObject> objects;
 	
+	public void SelectObjectN(int x){
+		
+	}
+	
 	public AI(){
 		This = this;
 		rnd = new Random();
@@ -27,6 +31,7 @@ public class AI implements Player{
 		cnt = 0;
 		inited = false; 
 		objects = new ArrayList<GameObject>();
+		
 
 		new Timer().schedule(new TimerTask() { 
 			public void run()  { 
@@ -90,9 +95,14 @@ public class AI implements Player{
 	public EventBase getEvent() {
 		return ink;
 	}
-
+	Command lastCommand;
+	
 	@Override
 	public void CommandChanged(Command command) {
+		if(command instanceof Selecter){
+			
+		}
+		lastCommand = command;
 	}
 
 }
