@@ -31,7 +31,7 @@ public abstract class GameObject {
 	/**
 	 * To be overridden
 	 */
-	public abstract void Update();
+	public abstract void Update(Field[][] states);
 	
 	// Returns x pos rounded to nearest int
 	public int getXTile() {

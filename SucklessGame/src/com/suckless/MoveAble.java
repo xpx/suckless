@@ -27,9 +27,6 @@ public class MoveAble extends GameObject {
 		this.target = pos;
 	}
 	
-	public void Update() {
-		Move();
-	}
 	
 	/**
 	 * Updates objects position
@@ -60,6 +57,11 @@ public class MoveAble extends GameObject {
 			}
 			
 		}
+	}
+
+	@Override
+	public void Update(Field[][] states) {
+		Move();
 	}
 
 }
