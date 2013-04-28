@@ -67,10 +67,10 @@ public class AI implements Player{
 					for (GameObject go : cell.gameobject) {
 						if (go.owner == This) {
 							objects.add(go);
-							System.out
+							/*System.out
 									.printf("Added object %d which is at pos %f, %f \n",
 											System.identityHashCode(go),
-											go.pos.x, go.pos.y);
+											go.pos.x, go.pos.y);*/
 						}
 					}
 				}
