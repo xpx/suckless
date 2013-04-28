@@ -8,8 +8,23 @@ import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.math.Vector2;
 public class GameObjectVisual implements GameVisual{
+	public enum UnitState{
+		PLAYER,
+		ENEMY,
+		NEUTRAL
+	}
 	
+	public Color GetPlayerColor(UnitState unitState){
+		if(unitState == UnitState.PLAYER){
+			return Color.BLUE;
+		}else if(unitState == UnitState.ENEMY){
+			return Color.RED;
+		}else{
+			return Color.GRAY;
+		}
+	}
 	
+	public UnitState unitstate;
 	public Vector2 Loc;
 	public Vector2 Size;
 	public Color ObjectColor;

@@ -8,8 +8,9 @@ import com.badlogic.gdx.math.Vector2;
 public class VisualFactory {
 	
 	Dictionary<GameObject,GameObjectVisual> visualLut;
-	
-	public VisualFactory(){
+	Player player;
+	public VisualFactory(Player theplayer){
+		player = theplayer;
 		visualLut = new Hashtable<GameObject,GameObjectVisual>();
 	}
 	
@@ -24,8 +25,17 @@ public class VisualFactory {
 		
 		GameObjectVisual gov = null;//visualLut.get(go);
 		if(gov == null){
+			
 			gov = makeGameObjectVisual(go);
 			visualLut.put(go, gov);
+			if(go.owner == player){
+				gov.unitstate = GameObjectVisual.UnitState.PLAYER;
+			}else if(go.owner == null){
+				gov.unitstate = GameObjectVisual.UnitState.NEUTRAL;
+			}else{
+				gov.unitstate = GameObjectVisual.UnitState.ENEMY;
+			}
+			
 		}
 		
 		return gov;

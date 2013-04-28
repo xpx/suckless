@@ -36,7 +36,7 @@ public class GameScreen implements Screen, Player {
 	}
 	
 	float t;
-	VisualFactory visFact = new VisualFactory();
+	VisualFactory visFact = new VisualFactory(this);
 	/*Runs the rendering*/
 	@Override
 	public void render(float delta) {
@@ -59,9 +59,7 @@ public class GameScreen implements Screen, Player {
 		
 		List<GameVisual> visuals = new LinkedList<GameVisual>();
 	
-		if(CurrentCommand != null){
-		visuals.add(visFact.GetCommandVisual(CurrentCommand));
-		}
+		
 		if(CurrentWorldState != null){
 			List<GameObject> gameObjects = new GameState(CurrentWorldState).GetAllGameObjects();
 			
@@ -69,6 +67,9 @@ public class GameScreen implements Screen, Player {
 				visuals.add(visFact.GetVisual(gobj));
 			}
 		}
+		if(CurrentCommand != null){
+			visuals.add(visFact.GetCommandVisual(CurrentCommand));
+			}
 		
 		for(GameVisual vis : visuals){
 			vis.Draw(rendState);
