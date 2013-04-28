@@ -20,8 +20,8 @@ public class Infantry extends MoveAble {
 	
 	public void FindInteraction(Field[][] states){
 		// Attack close random object
-		for (int i = Math.max(this.getXTile()-range,0); i<Math.min(this.getXTile()+range,states.length);i++){
-			for (int j = Math.max(this.getYTile()-range,0); j<Math.min(this.getYTile()+range,states[0].length);j++){
+		for (int i = Math.max(this.getXTile()-range,0); i<Math.min(this.getXTile()+range+1,states.length);i++){
+			for (int j = Math.max(this.getYTile()-range,0); j<Math.min(this.getYTile()+range+1,states[0].length);j++){
 				if (states[i][j].gameobject.isEmpty() == false)
 				{
 					for(GameObject gameobj : states[i][j].gameobject){

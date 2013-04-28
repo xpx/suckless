@@ -125,8 +125,9 @@ public class GameHandler {
 	// Handle functionen til at k�re the stuff
 	public void  Handle()
 	{
-		// update all gameobjects function
+		updateAllObjectsToCells();
 		
+		// update all gameobjects function
 		for(Field[] rows: handle.stateArray){
 			for(Field cell : rows){
 				for(GameObject go : cell.gameobject){
@@ -146,7 +147,7 @@ public class GameHandler {
 				handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.remove(gameobj);				
 			}
 		}
-		updateAllObjectsToCells();
+
 	}
 	
 	public void updateAllObjectsToCells(){
