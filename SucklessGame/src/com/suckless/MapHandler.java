@@ -81,26 +81,31 @@ public class MapHandler {
 
 	
 	public void Update(StateHandler handle,Player[] players){
-		if(gameMOD == GameMOD.SINGLEPLAYER){
-			List<Player> player = new GameState(handle.stateArray).GetAllPlayersAlive(handle.stateArray);
-			if(player.size() <= 1){
-				if(player.isEmpty() == false){
-					if(player.get(0) == user){
-						level++;
-					}
-				}
-				switch(level){
-					case 0:	scenario1(handle.stateArray,players);
-							System.out.print("Scenario 1");
-						break;
-					case 1: handle.resetStateArray();
-							scenario2(handle.stateArray,players);
-							System.out.print("Scenario 2");
-						break;
-					default:
+		switch(gameMOD){
+		case NONE:			
 							break;
-				}
-			}
+		case SINGLEPLAYER:	List<Player> player = new GameState(handle.stateArray).GetAllPlayersAlive(handle.stateArray);
+							if(player.size() <= 1){
+								if(player.isEmpty() == false){
+									if(player.get(0) == user){
+										level++;
+									}
+								}
+								switch(level){
+									case 0:	scenario1(handle.stateArray,players);
+											System.out.print("Scenario 1");
+										break;
+									case 1: handle.resetStateArray();
+											scenario2(handle.stateArray,players);
+											System.out.print("Scenario 2");
+										break;
+									default:
+											break;
+								}
+							}
+							break;
+		case MULTIPLAYER:	
+							break;
 		}
 	}
 }
