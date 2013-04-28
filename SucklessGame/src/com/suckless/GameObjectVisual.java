@@ -28,18 +28,22 @@ public class GameObjectVisual implements GameVisual{
 	public Vector2 Loc;
 	public Vector2 Size;
 	public Color ObjectColor;
-	public GameObjectVisual(Vector2 location,Vector2 size){
-		Loc = location;
+	public double hpRel;
+	
+	public GameObjectVisual(GameObject go,Vector2 size){
+		hpRel = go.hp / go.MaxHp;
+		Loc = go.pos;
 		Size = size;
 		ObjectColor = Color.WHITE;
 	}
 	Random rgen = new Random();
 	
 	@Override
-	public void Draw(RenderState gdx) {
-		// TODO Auto-generated method stub
-		//Loc = Loc.add(new Vector2(rgen.nextFloat() - 0.5f,rgen.nextFloat() - 0.5f));
-		
+	public void Draw(RenderState gdx){
+		DrawSquareMesh(gdx);
+	}
+	
+	public void DrawMesh(RenderState gdx, Mesh mesh){
 		if(gdx.IsEs1){
 			gdx.getSquareMesh().render(GL10.GL_TRIANGLE_STRIP);
 			
@@ -47,10 +51,26 @@ public class GameObjectVisual implements GameVisual{
 			gdx.sprog.SetCurrentColor(ObjectColor);
 			gdx.sprog.SetObjectPosition(Loc);
 			gdx.sprog.SetObjectSize(Size);
-			gdx.getSquareMesh().render(gdx.sprog,GL20.GL_TRIANGLE_FAN);
-			
+			mesh.render(gdx.sprog,GL20.GL_TRIANGLE_FAN);
 		}
+	}
+	public void DrawSquareMesh(RenderState gdx) {
+		DrawMesh(gdx,gdx.getSquareMesh());
 		
+	}
+	public void DrawTriangleMesh(RenderState gdx) {
+		DrawMesh(gdx,gdx.getTriangleMesh());
+		
+	}
+	
+	public void DrawHealthBar(RenderState gdx, Vector2 location){
+		float rel = (float) hpRel / 2.0f;
+		Vector2 size = new Vector2(rel,0.0f);
+		Vector2 halfsize = new Vector2(rel / 2f,0.0f);
+		gdx.sprog.SetCurrentColor(Color.YELLOW);
+		gdx.sprog.SetObjectPosition(Loc.cpy().sub(halfsize));
+		gdx.sprog.SetObjectSize(size);
+		gdx.getUnitLine().render(gdx.sprog,GL20.GL_LINE_LOOP);
 	}
 	
 	

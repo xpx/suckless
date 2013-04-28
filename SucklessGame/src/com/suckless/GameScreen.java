@@ -40,9 +40,10 @@ public class GameScreen implements Screen, Player {
 	int iteration = 0;
 	@Override
 	public void render(float delta) {
-		
-		gameHandler.Handle();
-		if(iteration++ % 6  ==0){
+		if(iteration % 4 == 0){
+			gameHandler.Handle();
+		}
+		if(iteration++ % 5  ==0){
 		gameHandler.updateSelection();
 		}
 		GLCommon gl = Gdx.gl;

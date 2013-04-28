@@ -19,9 +19,9 @@ public class VisualFactory {
 			return new InfantryVisual((Infantry)go);
 
 		} else if (go instanceof Static) {
-			return new StaticVisual(go.pos.cpy());
+			return new StaticVisual(go);
 		}
-		return new GameObjectVisual(go.pos.cpy(),new Vector2(1.0f,1.0f));
+		return new GameObjectVisual(go,new Vector2(1.0f,1.0f));
 	}
 	
 	public GameObjectVisual GetVisual(GameObject go){

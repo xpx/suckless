@@ -28,13 +28,19 @@ public abstract class GameObject {
 	
 	public Player attacking = null;
 	
+	public double MaxHp;
+	
 	// HP
 	public double hp;
 	
 	public GameObject(Vector2 pos, double hp, boolean destroyable) {
 		this.pos = pos;
 		this.hp = hp;
+
 		this.destroyable = destroyable;
+
+		MaxHp = hp;
+
 	}
 	
 	/**
