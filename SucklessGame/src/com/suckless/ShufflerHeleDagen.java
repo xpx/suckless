@@ -24,8 +24,13 @@ public class ShufflerHeleDagen extends Command {
 		return objectList;
 	}
 
+	int it = 0;
+	
 	public Command MegaHand(Field[][] states, Player player){
-
+		if(it++ % 4 != 0){
+			return this;
+		}
+		
 		List<GameObject> shuffleList = createGameObjectList(states, player);
 		selectedObject.selected = false;
 		if(shuffleList.indexOf(selectedObject)+1 >= shuffleList.size()){

@@ -22,8 +22,8 @@ public class AI implements Player{
 				cnt += 1;
 				if(cnt >= nextTarget){
 					cnt = 0;
-					nextTarget = (rnd.nextInt(3000)) / 10;
-					//ink.Invoke();
+					nextTarget = (rnd.nextInt(500)) / 10;
+					ink.Invoke();
 				}
 			}
 		}, 0, 10);

@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Infantry extends MoveAble {
 	
 	public double damage;
-	public int range = 2;
+	public int range = 1;
 
 	public Infantry(Vector2 pos, double hp, float speed, double damage) {
 		super(pos, hp, speed);

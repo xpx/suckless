@@ -81,13 +81,14 @@ public class GameHandler {
 		}
 		
 		// Hard coded game setup
-		AddGameObject(new Infantry(new Vector2(1,1), 10, 0.01f, 1.0),players[0]);
-		AddGameObject(new Infantry(new Vector2(2,8), 10, 0.01f, 1.0),players[0]);
+		for(float i = 2; i < 4;i++){
+		AddGameObject(new Infantry(new Vector2(1,i), 10, 0.01f, 1.0),players[0]);
+		AddGameObject(new Infantry(new Vector2(2,i), 10, 0.01f, 1.0),players[0]);
 		
 		// Hard coded game setup
-		AddGameObject(new Infantry(new Vector2(9,1), 10, 0.01f, 1.0),players[1]);
-		AddGameObject(new Infantry(new Vector2(9,3), 10, 0.01f, 1.0),players[1]);
-		
+		AddGameObject(new Infantry(new Vector2(9,i), 10, 0.01f, 1.0),players[1]);
+		AddGameObject(new Infantry(new Vector2(8,i), 10, 0.01f, 1.0),players[1]);
+		}
 		// Add static objects public Static(Vector2 pos, double hp, boolean passAble, boolean canBeOccupied)
 		// AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
 	}
@@ -134,7 +135,7 @@ public class GameHandler {
 		}
 
 		for(GameObject gameobj : new GameState(handle.stateArray).GetAllGameObjects()){
-			System.out.print("\n hp:" + gameobj.hp);
+			//System.out.print("\n hp:" + gameobj.hp);
 			if(gameobj.hp <= 0){
 				handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.remove(gameobj);				
 			}
@@ -145,11 +146,18 @@ public class GameHandler {
 	public void updateAllObjectsToCells(){
 		for(int i = 0; i<handle.stateArray.length; i++){
 			for(int j = 0; j<handle.stateArray[0].length; j++){
+				List<GameObject> toChange = new LinkedList<GameObject>();
 				for(GameObject gameobj : handle.stateArray[i][j].gameobject){
+					gameobj.pos.x = Math.max(0, Math.min(gameobj.pos.x, handle.stateArray.length -1 + 0.4f));
+					gameobj.pos.y = Math.max(0, Math.min(gameobj.pos.y, handle.stateArray[0].length -1 + 0.4f));
 					if(new Vector2(gameobj.getXTile(),gameobj.getYTile()) != new Vector2(i,j)){
-						handle.stateArray[i][j].gameobject.remove(gameobj);
-						handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.add(gameobj);
+						toChange.add(gameobj);
+						
 					}
+				}
+				for(GameObject gameobj : toChange){
+					handle.stateArray[i][j].gameobject.remove(gameobj);
+					handle.stateArray[gameobj.getXTile()][gameobj.getYTile()].gameobject.add(gameobj);
 				}
 			}
 		}

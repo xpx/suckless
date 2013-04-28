@@ -33,9 +33,12 @@ public abstract class Selecter extends Command {
 			break;
 		}
 	}
-	
+	int it = 0;
 		@Override
 	public Command Update(Field[][] states, Player player){
+			if(it++ % 3 == 1){
+				return this;
+			}
 			if(stop){
 				return handleSelect(selectedObject);
 			}
