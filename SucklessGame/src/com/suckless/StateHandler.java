@@ -9,14 +9,11 @@ public class StateHandler {
 	public void ConstructStateArray(int x, int y)
 	{
 		stateArray= new Field[x][y];	
-
-		
 		for (int i=0; i < x; i++)
 		{
 			for (int j=0; j < x; j++)
 			{
-				Field objecto = new Field();
-				objecto.actualField = new FieldType("grass",2);
+				Field objecto = new Field(new FieldType("grass",2));
 				stateArray[i][j] = objecto;
 			}
 		}	

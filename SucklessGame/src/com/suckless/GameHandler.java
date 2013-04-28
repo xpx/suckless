@@ -38,13 +38,16 @@ public class GameHandler {
 	}
 	List<playerEventHandler> playerEventHandlers;
 	GameHandler(Player[] players1){
+		handle = new StateHandler(10,10);
 		playerEventHandlers = new LinkedList<playerEventHandler>();
 		players = players1;
 		for(Player ply : players){
 			playerEventHandler pListener = new playerEventHandler(ply,this);
 			playerEventHandlers.add(pListener);
 			EventBase evt = ply.getEvent();
-			evt.AddListener(pListener);
+			if(evt != null){
+				evt.AddListener(pListener);
+			}
 		}
 		commandDict = new Hashtable<Player,Command>();
 		

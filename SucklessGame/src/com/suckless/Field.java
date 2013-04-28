@@ -1,7 +1,15 @@
 package com.suckless;
 
-// Game object er null, når der intet er på feltet
+import java.util.LinkedList;
+import java.util.List;
+
+// Game object er null, nï¿½r der intet er pï¿½ feltet
 public class Field {
-	public GameObject[] gameobject;
+	public List<GameObject> gameobject;
 	public FieldType actualField;
+	public Field(FieldType fieldType){
+		gameobject = new LinkedList<GameObject>();
+		actualField = fieldType;
+	}
+	
 }
