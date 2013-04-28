@@ -28,15 +28,15 @@ public class AI implements Player{
 		inited = false; 
 		objects = new ArrayList<GameObject>();
 		
-		
-		new Timer().schedule(new TimerTask() { 
-			public void run()  { 
+
 /*				cnt += 1;
 				if(cnt >= nextTarget){
 					cnt = 0;
 					nextTarget = (rnd.nextInt(500)) / 10;
 					ink.Invoke();
 				}*/
+		new Timer().schedule(new TimerTask() { 
+			public void run()  { 
 				
 				if (!inited) {
 					objects = GetOwnObjects(stateArray);

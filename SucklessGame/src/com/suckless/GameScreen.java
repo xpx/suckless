@@ -22,7 +22,6 @@ public class GameScreen implements Screen, Player {
 	EventBase keyPressInvoke;
 	Command CurrentCommand;
 	Field[][] CurrentWorldState;
-
 	
 	/*
 	 * Sets up the gamescreen and adds input listeners
@@ -38,9 +37,14 @@ public class GameScreen implements Screen, Player {
 	float t;
 	VisualFactory visFact = new VisualFactory(this);
 	/*Runs the rendering*/
+	int iteration = 0;
 	@Override
 	public void render(float delta) {
 		
+		gameHandler.Handle();
+		if(iteration++ % 2 ==0){
+		gameHandler.updateSelection();
+		}
 		GLCommon gl = Gdx.gl;
 		if(shader == null){
 			shader = new FlatColorShader();
