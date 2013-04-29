@@ -19,7 +19,7 @@ public class MapHandler {
 	MapHandler(Player player){
 		level = 0;
 		user = player;
-		gameMOD = GameMOD.SINGLEPLAYER;
+		gameMOD = GameMOD.NONE;
 	}
 	
 	public void AddGameObject(GameObject go, Player player, Field[][] states){
@@ -31,32 +31,32 @@ public class MapHandler {
 	
 	public void Update(StateHandler handle,Player[] players){
 		switch(gameMOD){
-		case NONE:			
+		case NONE:			map = new Intro();
+							level = 0;
+							gameMOD = GameMOD.SINGLEPLAYER;
 							break;
 		case SINGLEPLAYER:	List<Player> player = new GameState(handle.stateArray).GetAllPlayersAlive(handle.stateArray);
-							if(player.size() <= 1){
-								if(player.isEmpty() == false){
-									if(player.get(0) == user){
-										level++;
-									}
+							if(map.endCondition(handle.stateArray, user)){
+								if(map.victoryCondition(handle.stateArray, user)){
+									level++;
 								}
 								switch(level){
-									case 0:	handle.resetStateArray();
+									case 1:	handle.resetStateArray();
 											map = new Scenario1(players);
 											map.blitMap(handle.stateArray);
 											System.out.print("Scenario 1");
 										break;
-									case 1: handle.resetStateArray();
+									case 2: handle.resetStateArray();
 											map = new Scenario2(players);
 											map.blitMap(handle.stateArray);
 											System.out.print("Scenario 2");
 										break;
-									case 2:	handle.resetStateArray();
+									case 3:	handle.resetStateArray();
 											map = new Scenario3(players);
 											map.blitMap(handle.stateArray);
 											System.out.print("Scenario 3"); 
 										break;
-									case 3:	handle.resetStateArray();
+									case 4:	handle.resetStateArray();
 											map = new Scenario4(players);
 											map.blitMap(handle.stateArray);
 											System.out.print("Scenario 4"); 
