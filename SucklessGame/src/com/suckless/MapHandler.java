@@ -17,7 +17,7 @@ public class MapHandler {
 	}
 	
 	MapHandler(Player player){
-		level = 0;
+		map = new Intro();
 		user = player;
 		gameMOD = GameMOD.NONE;
 	}
@@ -31,12 +31,12 @@ public class MapHandler {
 	
 	public void Update(StateHandler handle,Player[] players){
 		switch(gameMOD){
-		case NONE:			map = new Intro();
-							level = 0;
-							gameMOD = GameMOD.SINGLEPLAYER;
+		case NONE:			if(map.endCondition(handle.stateArray, user)){
+								level = 1;
+								gameMOD = GameMOD.SINGLEPLAYER;
+							}
 							break;
-		case SINGLEPLAYER:	List<Player> player = new GameState(handle.stateArray).GetAllPlayersAlive(handle.stateArray);
-							if(map.endCondition(handle.stateArray, user)){
+		case SINGLEPLAYER:	if(map.endCondition(handle.stateArray, user)){
 								if(map.victoryCondition(handle.stateArray, user)){
 									level++;
 								}

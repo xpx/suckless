@@ -20,6 +20,6 @@ public class Intro extends Map {
 	
 	@Override
 	public boolean victoryCondition(Field[][] states, Player user){
-		return true;
+		return false;
 	}
 }
