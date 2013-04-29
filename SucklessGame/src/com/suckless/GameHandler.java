@@ -74,33 +74,6 @@ public class GameHandler {
 		commandDict = new Hashtable<Player,Command>();
 	}
 	
-	private void scenarioHardCode()
-	{
-		// Virker til 10x10
-		for(Field[] states : handle.stateArray){
-			for(Field felt : states){
-				felt.actualField = new FieldType("grass",0);
-			}
-		}
-		
-		// Hard coded game setup
-		for(float i = 2; i < 4;i++){
-		AddGameObject(new Infantry(new Vector2(1,i), 100, true, 0.01f, 1.0),players[0]);
-		AddGameObject(new Infantry(new Vector2(2,i), 100, true, 0.01f, 1.0),players[0]);
-		
-		AddGameObject(new Static(new Vector2(4,3), 1, false, false, false),null);
-		AddGameObject(new Static(new Vector2(4,4), 1, false, false, false),null);
-		AddGameObject(new Static(new Vector2(4,5), 1, false, false, false),null);
-		AddGameObject(new Static(new Vector2(4,6), 1, false, false, false),null);
-		
-		// Hard coded game setup
-		AddGameObject(new Infantry(new Vector2(9,i), 100, true, 0.01f, 1.0),players[1]);
-		AddGameObject(new Infantry(new Vector2(8,i), 100, true, 0.01f, 1.0),players[1]);
-		}
-		// Add static objects public Static(Vector2 pos, double hp, boolean passAble, boolean canBeOccupied)
-		// AddGameObject(new Static(new Vector2(5,5), 1, false, false),null);
-	}
-	
 	void onPlayerSelectEvent(Player player){
 		Command cmd = commandDict.get(player);
 		if(cmd != null ){

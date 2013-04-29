@@ -20,6 +20,14 @@ public class Infantry extends MoveAble {
 		this.damage = damage;
 	}
 	
+	public Infantry(Vector2 pos, double hp, boolean destroyable, float speed, double damage, double range, Player player) {
+		super(pos, hp,  destroyable,speed);
+		rn = new Random();
+		this.range = range;
+		this.damage = damage;
+		this.owner = player;
+	}
+	
 	private void DealDamage(List<GameObject> objlist){
 		GameObject gameobj = objlist.get(rn.nextInt(objlist.size()));
 		gameobj.hp = gameobj.hp-damage;

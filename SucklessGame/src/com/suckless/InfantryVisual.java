@@ -44,7 +44,7 @@ public class InfantryVisual extends GameObjectVisual {
 			gdx.getUnitCircle().render(gdx.sprog,GL20.GL_LINE_LOOP);
 			
 			if(LastAttack != null && ((it++ % 5) == 0)){
-				gdx.PlaySound(Sounds.genShot());
+				// gdx.PlaySound(Sounds.genShot());
 				gdx.sprog.SetCurrentColor(Color.ORANGE);
 				gdx.sprog.SetObjectPosition(Loc);
 				gdx.sprog.SetObjectSize(LastAttack.pos.cpy().sub(Loc));
