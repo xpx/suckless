@@ -13,13 +13,6 @@ public class Infantry extends MoveAble {
 	public double range = 2;
 	Random rn;
 	
-	public Infantry(Vector2 pos, double hp, boolean destroyable, float speed, double damage) {
-		super(pos, hp,  destroyable,speed);
-		rn = new Random();
-		
-		this.damage = damage;
-	}
-	
 	public Infantry(Vector2 pos, double hp, boolean destroyable, float speed, double damage, double range, Player player) {
 		super(pos, hp,  destroyable,speed);
 		rn = new Random();
